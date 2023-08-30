@@ -12,6 +12,12 @@ import hero7bgremoved from './images/carousel-img/hero7-removebg.png'
 import hero8bgremoved from './images/carousel-img/hero8-removebg.png'
 import hero10bgremoved from './images/carousel-img/hero10-removebg.png'
 
+
+import profile1 from './images/profile/profile1.jpg'
+
+
+
 export {
-    food1,food2,food3,food4,forkgray,hero1,hero,heropattern,hero6bgremoved,hero7bgremoved,hero8bgremoved,hero10bgremoved
+    food1,food2,food3,food4,forkgray,hero1,hero,heropattern,hero6bgremoved,hero7bgremoved,hero8bgremoved,hero10bgremoved,
+    profile1,
 }

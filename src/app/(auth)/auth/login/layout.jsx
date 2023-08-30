@@ -7,7 +7,6 @@ export const metadata={
 const layout = ({children}) => {
   return (
     <>
-        <header>Head</header>
         <main>{children}</main>
     </>
   )

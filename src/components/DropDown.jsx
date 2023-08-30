@@ -1,9 +1,11 @@
 "use client"
 import { getToken, removeToken } from "@/redux/features/localStorage";
 import { useGetLoggedUserQuery } from "@/redux/services/users/userApi";
+import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+import { profile1 } from "../../public/assets";
 
 
 const DropDown = ({ toggle, setToggle }) => {
@@ -17,7 +19,7 @@ const DropDown = ({ toggle, setToggle }) => {
   };
   const { access_token } = getToken();
   const { data, isSuccess } = useGetLoggedUserQuery(access_token);
-
+console.log(data);
 
   const [userData, setUserData] = useState({
     email: "",
@@ -38,13 +40,13 @@ const DropDown = ({ toggle, setToggle }) => {
 
     }
   }, [data, isSuccess]);
-  
+
   return (
     <>
       <div className="flex relative items-center md:order-2">
         
         {
-          !access_token?(
+          !data?(
             <div className="px-2 bg-gray-200  py-1 mx-2 hover:bg-gray-100 hover:border-gray-400 border border-white rounded-lg dark:shadow-md dark:shadow-gray-700 dark:bg-gray-800 dark:hover:bg-transparent dark:border-gray-700  dark:border dark:hover:border-orange-200  ">
             <Link
               href="/auth/signup/"
@@ -66,8 +68,7 @@ const DropDown = ({ toggle, setToggle }) => {
             data-dropdown-placement="bottom"
           >
             <span className="sr-only">Open user menu</span>
-            {/* <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo"/> */}
-            <div className="w-8 h-8 rounded-full"></div>
+            <Image className="w-8 h-8 rounded-full border" src={profile1} alt="user photo"/>
           </button>
           {/* -- Dropdown menu -- */}
           <div
@@ -104,8 +105,9 @@ const DropDown = ({ toggle, setToggle }) => {
               </li>
 
               <li onClick={handleLogout}>
+
                 <a
-                  href="/auth/logout"
+                  href="/"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                 >
                   Sign out
