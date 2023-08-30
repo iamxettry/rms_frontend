@@ -6,30 +6,32 @@ import Link from "next/link";
 import React, { Suspense, useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { profile1 } from "../../public/assets";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 
 const DropDown = ({ toggle, setToggle }) => {
   const [togglePorfile, setTogglePorfile] = useState(false);
+  const router=useRouter()
   const handleLogout = () => {
     // dispatch(unsetUserInfo({ username: "", email: "" }));
     // dispatch(logOut({ username: null, access_token: null }));
     removeToken();
-    // setTogglePorfile(!togglePorfile);
-    // navigate("/login");
+    setTogglePorfile(!togglePorfile);
+    router.push('/')
+    toast.success("Logout successful!")
+    
   };
   const { access_token } = getToken();
   const { data, isSuccess } = useGetLoggedUserQuery(access_token);
-console.log(data);
 
   const [userData, setUserData] = useState({
     email: "",
     username: "",
   });
-  console.log("local state",userData.email,userData.username)
 
   // Store User Data in Local State
   useEffect(() => {
-    console.log("inside effect",data);
     if (data && isSuccess) {
       
       setUserData({
