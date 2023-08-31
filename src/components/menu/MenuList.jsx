@@ -13,10 +13,18 @@ const MenuList = () => {
       <div>
         <div className="grid grid-cols-2 rounded-lg md:grid-cols-3 lg:grid-cols-4">
           {/* map the items */}
-            <MenuItem id={1} title="Seafood Salad" />
-            <MenuItem id={2} title="Momo" />
-            <MenuItem id={3} title="Avocada salad"/>
-            <MenuItem id={4} title="Fish "/>
+            <MenuItem  title="Seafood Salad" />
+            <MenuItem  title="Momo" />
+            <MenuItem  title="Avocada salad"/>
+            <MenuItem  title="Fish "/>
+            <MenuItem  title="Fish "/>
+            <MenuItem  title="Fish "/>
+            <MenuItem  title="Fish "/>
+            <MenuItem  title="Fish "/>
+            <MenuItem  title="Fish "/>
+            <MenuItem  title="Fish "/>
+            <MenuItem  title="Fish "/>
+            <MenuItem  title="Fish "/>
         </div>
       </div>
     </>

@@ -19,7 +19,7 @@ const IncDec = () => {
   };
   return (
     <>
-        <div className="flex gap-5 bg-orange-500 py-3 px-5 items-center rounded-full text-white">
+        <div className="flex gap-5 bg-orange-500 py-3 px-5 items-center rounded-full text-white text-2xl">
               <i >
                 <FaMinus onClick={decrementCount}/>
               </i>

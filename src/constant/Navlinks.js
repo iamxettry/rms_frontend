@@ -24,8 +24,8 @@ export const Navlink = [
     path: "/about",
     title: "About",
   },
-  {
-    path: "/contact",
-    title: "Contact",
-  },
+  // {
+  //   path: "/contact",
+  //   title: "Contact",
+  // },
 ];

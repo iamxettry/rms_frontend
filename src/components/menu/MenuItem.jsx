@@ -10,7 +10,7 @@ const MenuItem = ({ title }) => {
   const [favourite, setfavourite] = useState(false);
   return (
     <>
-      <div className="flex flex-col items-center  bg-slate-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white ">
+      <div className="flex flex-col items-center  bg-slate-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white  ">
         {
           // later change based through database
           favourite ? (
@@ -25,14 +25,14 @@ const MenuItem = ({ title }) => {
             />
           )
         }
-        <Link href={`menu/${title}`}>
-          <BackLight style=" h-20 w-20 top-12 left-10 blur-[40px]  bg-gradient-to-r from-green-500 to-white" />
+        <Link href={`/menu/${title}`} className="w-full flex flex-col items-center">
+          <BackLight style=" h-20 w-20 top-12 left-10 blur-[50px]  bg-gradient-to-r from-green-500 to-white" />
 
           <Image
             src={hero}
             priority
-            height={100}
-            width={100}
+            height="auto"
+            width="auto"
             className=""
             alt="salad"
           />
@@ -44,7 +44,7 @@ const MenuItem = ({ title }) => {
               <b>$5.98</b>
             </p>
 
-            <p className="p-2 rounded-full bg-black text-white dark:bg-orange-500 ">
+            <p className="p-2 rounded-full  text-white bg-orange-500 ">
               <FaPlus />
             </p>
           </div>
