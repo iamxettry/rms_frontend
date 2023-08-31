@@ -16,7 +16,7 @@ const Menu = () => {
   return (
     <>
       <main className=" ">
-        <div className="z-10 py-10 relative after:absolute after:z-0  after:contents-[*] after:w-[600px] after:h-96 md:after:bg-hero-11 after:bg-contain after:bg-no-repeat md:after:blur-sm md:after:opacity-50 lg:after:blur-none after:top-0 after:right-0 ">
+        <div className="z-10 py-10 relative after:absolute after:z-0  after:contents-[*]  md:after:w-[600px] after:h-96 md:after:bg-hero-11 after:bg-contain after:bg-no-repeat md:after:blur-sm md:after:opacity-50 lg:after:blur-none after:top-0 after:right-0 ">
           <div className="flex  justify-center items-center flex-col h-48 gap-10 z-40 relative ">
             <h1 className="text-4xl md:text-6xl font-bold">Main Menu</h1>
             <p className="text-lg text-black/60 dark:text-white/70">
@@ -30,11 +30,11 @@ const Menu = () => {
         </div>
 
         {/* search component */}
-        <div className="mt-10 ">
+        <div className="mt-10 relative z-10">
           <SearchBar />
         </div>
        
-        <div className="py-6 relative after:absolute after:z-0  after:contents-[*] after:w-[300px] after:h-52 md:after:bg-hero-13 after:bg-cover after:bg-no-repeat md:after:blur-2xl md:after:opacity-50  after:top-80 after:left-40 ">
+        <div className="py-6 relative after:absolute after:z-0  after:contents-[*] md:after:w-[300px] after:h-52 md:after:bg-hero-13 after:bg-cover after:bg-no-repeat md:after:blur-2xl md:after:opacity-50  after:top-80 after:left-40 ">
             <MenuList/>
         </div>
       </main>

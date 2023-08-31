@@ -5,7 +5,7 @@ import {HiAdjustments} from 'react-icons/hi'
 const SearchBar = () => {
   return (
     <>
-        <div className='flex bg-black bg-opacity-10 items-center rounded-full px-4 gap-2 dark:bg-black dark:bg-opacity-50 dark:border w-96'>
+        <div className='flex bg-black bg-opacity-10 items-center rounded-full px-4 gap-2 dark:bg-black dark:bg-opacity-50 dark:border w-auto'>
             <FaSearch className=' text-xl text-gray-700 dark:text-white dark:text-opacity-70'/>
             <input type="text" id="search" 
             placeholder='Search your favourite food'
