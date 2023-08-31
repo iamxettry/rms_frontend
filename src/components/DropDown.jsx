@@ -24,7 +24,7 @@ const DropDown = ({ toggle, setToggle }) => {
   };
   // const { access_token } = getToken();
   // const { data, isSuccess } = useGetLoggedUserQuery(access_token);
-  const user=true
+  const user=false
   const [userData, setUserData] = useState({
     email: "",
     username: "",

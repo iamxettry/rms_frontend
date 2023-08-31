@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
@@ -8,24 +8,21 @@ import { getToken, storeToken } from "@/redux/features/localStorage";
 import Logo from "@/utils/Logo";
 import { toast } from "react-toastify";
 
-
-
 export default function Login() {
   const userRef = useRef();
-  const errRef = useRef();
+
 
   const [email, setEmail] = useState("");
   const [password, setPwd] = useState("");
 
   const [errorMsg, setErrMsg] = useState("");
-  
+
   const dispatch = useDispatch();
-  const [login, { isLoading,isError }] = useLoginUserMutation();
-  const router =useRouter()
+  const [login, { isLoading, isError }] = useLoginUserMutation();
+  const router = useRouter();
   useEffect(() => {
     userRef.current.focus();
   }, []);
-
 
   useEffect(() => {
     setErrMsg("");
@@ -33,38 +30,23 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
-      const userData = await login({ email, password });
-      if (userData.data) {
-        storeToken(userData.data.token)
-        // dispatch(setCredentials({email, access_token }));
-        setEmail('')
-        setPwd('')
-        router.push("/");
-        toast.success('Login Successfully.');
-      }
 
-      if (userData.error) {
-        toast.error(userData.error.data.detail);
-        setEmail('')
-        setPwd('')
-        
-        
-      }
-    {
-      // console.log(err);
-      // if (!err?.originalStatus) {
-      //   // isLoading: true until timeout occurs
-      //   setErrMsg("No Server Response");
-      // } else if (err.originalStatus === 400) {
-      //   setErrMsg("Missing Username or Password");
-      // } else if (err.originalStatus === 401) {
-      //   setErrMsg("Unauthorized");
-      // } else {
-      //   setErrMsg("Login Failed");
-      // }
-      // errRef.current.focus();
+    const userData = await login({ email, password });
+    if (userData.data) {
+      storeToken(userData.data.token);
+      // dispatch(setCredentials({email, access_token }));
+      setEmail("");
+      setPwd("");
+      router.push("/");
+      toast.success("Login Successfully.");
     }
+
+    if (userData.error) {
+      toast.error(userData.error.data.detail);
+      setEmail("");
+      setPwd("");
+    }
+  
   };
   // let { access_token } = getToken()
 
@@ -83,10 +65,7 @@ export default function Login() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form
-                className="space-y-4 md:space-y-6"
-                onSubmit={handleSubmit}
-              >
+              <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                 {/* email field  */}
                 <div>
                   <label
@@ -127,11 +106,10 @@ export default function Login() {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus: focus:border-none block w-full p-1.5 dark:bg-transparent dark:border-gray-600  dark:placeholder:text-white/60 dark:text-white dark:focus: dark:focus:border-none"
                   />
                 </div>
-               
-                <div className="flex items-center justify-between">
-                
+
+                <div className="flex items-center justify-end">
                   <Link
-                    href="/resetpassword"
+                    href="/auth/forgot-password"
                     className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Forgot password?

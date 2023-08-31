@@ -36,9 +36,33 @@ export const userApi = createApi({
         }
       }
     }),
+    sendPasswordResetEmail: builder.mutation({
+      query: (user) => {
+        return {
+          url: 'request-password-reset/',
+          method: 'POST',
+          body: user,
+          headers: {
+            'Content-type': 'application/json',
+          }
+        }
+      }
+    }),
+    resetPassword: builder.mutation({
+      query: ({ newPassword,confPassword, id, token }) => {
+        return {
+          url: `/reset-password/${id}/${token}/`,
+          method: 'POST',
+          body: {newPassword,confPassword},
+          headers: {
+            'Content-type': 'application/json',
+          }
+        }
+      }
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useRegisterUserMutation,useLoginUserMutation,useGetLoggedUserQuery } = userApi
+export const { useRegisterUserMutation,useLoginUserMutation,useGetLoggedUserQuery,useSendPasswordResetEmailMutation,useResetPasswordMutation} = userApi
