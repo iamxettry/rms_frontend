@@ -22,33 +22,33 @@ const DropDown = ({ toggle, setToggle }) => {
     toast.success("Logout successful!")
     
   };
-  const { access_token } = getToken();
-  const { data, isSuccess } = useGetLoggedUserQuery(access_token);
-
+  // const { access_token } = getToken();
+  // const { data, isSuccess } = useGetLoggedUserQuery(access_token);
+  const user=true
   const [userData, setUserData] = useState({
     email: "",
     username: "",
   });
 
   // Store User Data in Local State
-  useEffect(() => {
-    if (data && isSuccess) {
+  // useEffect(() => {
+  //   if (data && isSuccess) {
       
-      setUserData({
-        email: data.email,
-        username: data.username,
-      }
-      );
+  //     setUserData({
+  //       email: data.email,
+  //       username: data.username,
+  //     }
+  //     );
 
-    }
-  }, [data, isSuccess]);
+  //   }
+  // }, [data, isSuccess]);
 
   return (
     <>
       <div className="flex relative items-center md:order-2">
         
         {
-          !data?(
+          !user?(
             <div className="px-2 bg-gray-200  py-1 mx-2 hover:bg-gray-100 hover:border-gray-400 border border-white rounded-lg dark:shadow-md dark:shadow-gray-700 dark:bg-gray-800 dark:hover:bg-transparent dark:border-gray-700  dark:border dark:hover:border-orange-200  ">
             <Link
               href="/auth/signup/"

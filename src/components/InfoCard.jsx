@@ -1,6 +1,6 @@
 import { Btn } from "@/utils/Btn";
 import { CardInfo } from "@/constant";
-import BackLingt1 from "./backLight/BackLingt1";
+import BackLight from "./backLight/Backlight";
 
 const InfoCard = () => {
   return (
@@ -39,7 +39,7 @@ const InfoCard = () => {
           </div>
         ))}
 
-       <BackLingt1/>
+       <BackLight style={"w-32 h-32 bg-gradient-to-r from-orange-500 to-white right-32 bottom-64 blur-[100px]"}/>
       </div>
     </>
   );

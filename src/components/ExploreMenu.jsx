@@ -1,6 +1,6 @@
 import React from "react";
 import { Btn } from "@/utils/Btn";
-import { food3,hero10bgremoved } from "../../public/assets";
+import { hero10bgremoved } from "../../public/assets";
 import Image from "next/image";
 
 const ExploreMenu = () => {
@@ -10,7 +10,7 @@ const ExploreMenu = () => {
         <div className="md:flex items-center justify-between">
           {/* image (left) section */}
           <div className="flex-1 w-full p-2">
-            <Image src={hero10bgremoved} priority alt="Burger" />
+            <Image src={hero10bgremoved} priority alt="Burger" height="auto" width="auto" />
           </div>
 
           {/* desc (right)  section*/}

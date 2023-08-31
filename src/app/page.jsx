@@ -1,7 +1,7 @@
 import ExploreMenu from "@/components/ExploreMenu";
 import Hero from "@/components/Hero";
 import InfoCard from "@/components/InfoCard";
-import BackLight2 from "@/components/backLight/BackLight2";
+import BackLight from "@/components/backLight/Backlight";
 import DashLineLeft from "@/components/dashedlined/DashLineLeft";
 import DashLineRight from "@/components/dashedlined/DashLineRight";
 
@@ -20,7 +20,7 @@ export default function Home() {
       {/* Explore Menu */}
       <section className='w-full py-2 bg-green-50 dark:bg-black relative'>
         <DashLineLeft/>
-        <BackLight2/>
+        <BackLight style={"w-32 h-32 bg-gradient-to-r from-white/75 to-white left-32 bottom-64 blur-[100px]"} />
         <ExploreMenu/>
         <DashLineRight/>
       </section>
