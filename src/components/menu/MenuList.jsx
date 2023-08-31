@@ -20,11 +20,7 @@ const MenuList = () => {
             <MenuItem  title="Fish "/>
             <MenuItem  title="Fish "/>
             <MenuItem  title="Fish "/>
-            <MenuItem  title="Fish "/>
-            <MenuItem  title="Fish "/>
-            <MenuItem  title="Fish "/>
-            <MenuItem  title="Fish "/>
-            <MenuItem  title="Fish "/>
+            
         </div>
       </div>
     </>

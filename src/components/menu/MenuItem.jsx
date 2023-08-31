@@ -15,12 +15,12 @@ const MenuItem = ({ title }) => {
           // later change based through database
           favourite ? (
             <FaHeart
-              className={`absolute right-2 top-2 text-red-700`}
+              className={`absolute right-2 top-2 text-red-700 cursor-pointer`}
               onClick={() => setfavourite(!favourite)}
             />
           ) : (
             <AiOutlineHeart
-              className={`absolute right-2 top-2 `}
+              className={`absolute right-2 top-2 cursor-pointer`}
               onClick={() => setfavourite(!favourite)}
             />
           )
