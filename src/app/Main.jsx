@@ -10,7 +10,7 @@ const Main = ({children}) => {
     <>
     <ToastContainer></ToastContainer>
      <main className={mode?"dark":undefined} >
-          <div className="bg-green-50 dark:bg-black dark:text-white/90 min-h-screen  ">
+          <div className="light_bg dark:bg-black dark:text-white/90 min-h-screen  ">
             <Navbar />
             <div className="w-[90%] sm:w-4/5 mx-auto">{children}</div>
           </div>

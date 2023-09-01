@@ -14,7 +14,7 @@ const Navbar = () => {
     const pathname = usePathname()
   return (
     <>
-      <nav className=" bg-green-50 py-1 dark:bg-black sticky top-0 z-30 md:z-50    border-b drop-shadow-md dark:border-b-slate-300 dark:border-opacity-30 ">
+      <nav className=" light_bg py-1 dark:bg-black sticky top-0 z-30 md:z-50    border-b drop-shadow-md dark:border-b-slate-300 dark:border-opacity-30 ">
         <div className="relative w-full md:w-4/5 flex flex-wrap items-center justify-between mx-auto px-4 md:px-0 ">
           <Logo/>
 
