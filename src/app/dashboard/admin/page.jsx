@@ -2,7 +2,17 @@ import React from 'react'
 
 const AdminDashboard = () => {
   return (
-    <div className=''>AdminDashboard</div>
+    <div className=''>
+
+      <header className='text-2xl text-gray-900 dark:text-white font-semibold py-4 border-b my-2 pl-10'>
+        <h1 className=''>Dashboard</h1>
+        
+      </header>
+      <main className='pl-10'>
+        d
+
+      </main>
+    </div>
   )
 }
 

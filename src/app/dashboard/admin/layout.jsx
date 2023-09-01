@@ -10,7 +10,7 @@ export default function DashboardLayout({
     children, 
   }) {
     return (
-      <section className='absolute left-0 top-0 z-50 light_bg dark:bg-black flex w-full gap-1'>
+      <section className='absolute left-0 top-0 z-50 light_bg dark:bg-black flex w-full '>
         
             <DashNav/>
        

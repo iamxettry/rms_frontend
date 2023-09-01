@@ -34,7 +34,7 @@ const page = ({ params }) => {
                 priority
                 height="auto"
                 width="auto"
-                className="z-20 relative md:w-[200px] lg:w-[250px]"
+                className="z-20 relative w-[350px] md:w-[200px] lg:w-[250px]"
                 alt="salad"
               />
 
