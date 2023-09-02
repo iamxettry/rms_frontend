@@ -1,21 +1,68 @@
 "use client";
-import Logo from "@/utils/Logo";
 import NavCard from "./NavCard";
 import { FaSearch } from "react-icons/fa";
 
 import { data, data1 } from "./adminConstant";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import {
+
+  ImArrowLeft2,
+  ImArrowRight2,
+  ImLeaf,
+} from "react-icons/im";
+import { useState } from "react";
+import Logo from "@/utils/Logo";
 const DashNav = () => {
+  const [toggle, setToggle] = useState(false);
+
   const pathname = usePathname();
 
   return (
-    <div className="w-60  border-r h-screen ">
-      <div className="w-full my-2 border-b px-4">
-        <Logo />
+    <div
+      className={`${
+        toggle ? "w-32  xs:w-40  md:w-52 absolute left-0 z-20 bg-slate-400 md:bg-transparent md:relative" : "w-16 md:w-52"
+      }   border-r min-h-screen `}
+    >
+      <div className="w-full my-2 border-b px-4 flex items-center justify-center gap-2">
+        
+        <Link
+          href={"/"}
+          className={`${
+            toggle ? "flex" : "hidden"
+          }  items-center py-2 text-xl font-semibold text-gray-900 dark:text-white md:hidden `}
+        >
+          <span className="self-center  font-semibold whitespace-nowrap dark:text-white">
+            B<span className="text-orange-500">D.</span>
+          </span>
+          <ImLeaf className="text-green-500" />
+        </Link>
+        <div className="hidden md:block">
+        <Logo/>
+        </div>
+          
+        <div
+          className={`${
+            toggle ? "text-2xl" : "text-3xl"
+          } w-full  dark:text-white cursor-pointer flex-1`}
+        >
+         
+          {toggle ? (
+            <ImArrowLeft2
+              onClick={() => setToggle((prev) => !prev)}
+              className="w-8 mx-auto md:hidden "
+            />
+          ) : (
+            <ImArrowRight2
+              onClick={() => setToggle((prev) => !prev)}
+              className="w-8 mx-auto md:hidden"
+            />
+          )}
+        </div>
       </div>
-      <div className=" pl-4">
-        <div className="border px-2 rounded-md w-48 flex items-center gap-5 mx-4">
-          <i className="text-black text-opacity-50 text-xl">
+      <div className=" md:pl-4">
+        <div className="border-2 px-2 rounded-md  md:w-48 flex items-center gap-5 mx-2 md:mx-4">
+          <i className="text-black text-opacity-50 md:text-xl">
             <FaSearch />
           </i>
           <input
@@ -34,11 +81,11 @@ const DashNav = () => {
                 key={item.id}
                 className={
                   isActive
-                    ? " bg-black bg-opacity-20 rounded-l-md w-full transition-all ease-in "
+                    ? " bg-black bg-opacity-20 rounded-l-md w-full transition-all ease-in"
                     : ""
                 }
               >
-                <NavCard item={item} />
+                <NavCard item={item} toggle={toggle} setToggle={setToggle} />
               </li>
             );
           })}
@@ -55,7 +102,7 @@ const DashNav = () => {
                     : ""
                 }
               >
-                <NavCard item={item} />
+                <NavCard item={item} toggle={toggle} setToggle={setToggle} />
               </li>
             );
           })}

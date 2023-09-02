@@ -1,44 +1,74 @@
 "use client";
 
 import Image from "next/image";
-import { hero10bgremoved } from "../../../../../../public/assets";
 import {  FaPlus } from "react-icons/fa";
 import {  RxCross2 } from "react-icons/rx";
 import { toast } from "react-toastify";
 import {  useRouter } from "next/navigation";
 import Link from "next/link";
-// import { FaPlus } from 'react-icons/fa'
+import { hero10bgremoved } from "../../../../../../../public/assets";
+import { useEffect, useState } from "react";
 
-const AddItem = () => {
+const EditItem =  ({params}) => {
     const router=useRouter()
+    const {id}=params
+    const [data, setData] = useState({
+        name: "",
+        category:"",
+        price:"",
+        itemtype:"",
+      //   img:
+        available:"",
+        calorie:""
+
+    })
+
+    useEffect(() => {
+        // Fetch data using a GET request with the provided itemId
+        const fetchData = async () => {
+          try {
+            const response = await fetch(`http://127.0.0.1:8000/api/menu/menu-item/${id}/`, { next: { revalidate: 0 } });
+    
+            if (response.ok) {
+              const data = await response.json();
+              // Set the retrieved data as the initial form values
+              setData(data);
+            } else {
+              console.error('Failed to fetch data');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        };
+    
+        fetchData(); // Call the fetchData function when the component mounts
+      }, [id]);
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setData({
+          ...data,
+          [name]: value,
+        });
+      };
+
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const actualData = {
-      name: data.get("name"),
-      category: data.get("category"),
-      price: data.get("price"),
-      itemtype: data.get("itemtype"),
-    //   img: data.get("img"),
-      available: data.get("available"),
-      calorie: data.get("calorie"),
-    };
+   
   
-    const res = await fetch(`http://127.0.0.1:8000/api/menu/menu-list/`, {
-      method: "POST",
+    const res = await fetch(`http://127.0.0.1:8000/api/menu/menu-list/${id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(actualData),
+      body: JSON.stringify(data),
     });
 
     if (!res.ok) {
       toast.error(res.statusText);
-      console.log(res);
     }else{
 
         const Newres = await res.json();
-
         router.push('/dashboard/admin/menu')
         toast.success(Newres.message)
 
@@ -47,11 +77,15 @@ const AddItem = () => {
   return (
     <>
       <div className=" flex flex-col gap-3 w-72 mx-auto md:w-96 lg:w-full">
-        <div className=" flex items-center justify-end my-5">
-        <Link href="/dashboard/admin/menu"  className="text-xl bg-black bg-opacity-25 hover:bg-opacity-10 p-3 rounded-full mr-5 md:mr-2 lg:mr-10" >
+        {/* {
+            data?"Edit Item":"Add Item"
+        } */}
+        <div className="w-full flex items-center justify-end my-5">
+        <Link href="/dashboard/admin/menu"  className="text-xl bg-black bg-opacity-25 hover:bg-opacity-10 p-3 rounded-full  mr-5 md:mr-2 lg:mr-10" >
           <RxCross2/>
         </Link>
         </div>
+      
         <div className="md:flex justify-between items-center gap-4">
           <form
             action=""
@@ -63,6 +97,8 @@ const AddItem = () => {
               <input
                 type="text"
                 name="name"
+                value={data.name}
+                onChange={handleInputChange}
                 className="rounded-md focus:outline-none px-3 bg-transparent w-full"
                 placeholder="Enter the item name"
               />
@@ -73,6 +109,10 @@ const AddItem = () => {
                 type="text"
                 id="category"
                 name="category"
+                value={data.category}
+                onChange={handleInputChange}
+
+
                 className="rounded-md focus:outline-none px-3 bg-transparent w-full"
                 placeholder="Enter the item Category"
               />
@@ -83,16 +123,25 @@ const AddItem = () => {
                 type="number"
                 id="price"
                 name="price"
+                value={data.price}
+                onChange={handleInputChange}
+
+
                 className="rounded-md focus:outline-none px-3 bg-transparent  w-full"
                 placeholder="Enter the product price(unit)"
               />
             </div>
-            <div className="flex text-black/80  my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center gap-5">
+            <div className="flex text-black/80  my-3 gap-2 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center ">
               <p className="flex items-center gap-2">
                 <label htmlFor="itemtype">Item type</label>
-                <input type="radio" name="itemtype" className="ml-5 md:ml-14" />
+                <input type="radio" name="itemtype" className="ml-5 md:ml-14"  value="veg" checked={data.itemtype === 'veg'}
+                onChange={handleInputChange}
+
+                />
                 <span>veg</span>
-                <input type="radio" name="itemtype" className="ml-4 md:ml-14" />
+                <input type="radio" name="itemtype" className="ml-4 md:ml-14" value="non veg"  checked={data.itemtype === 'veg'}
+                onChange={handleInputChange}
+                />
                 <span>non veg</span>
               </p>
             </div>
@@ -103,9 +152,13 @@ const AddItem = () => {
             <div className="flex text-black/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
               <p className="flex items-center gap-2">
                 <label htmlFor="available">Available</label>
-                <input type="radio" name="available" className="ml-5 md:ml-10" />
+                <input type="radio" name="available" className="ml-5 md:ml-10" checked={data.available &&  "on"} 
+                onChange={handleInputChange}
+                />
                 <span>yes</span>
-                <input type="radio" name="available" className="ml-4 md:ml-10" />
+                <input type="radio" name="available" className="ml-4 md:ml-10"   checked={data.available && 'on'} 
+                onChange={handleInputChange}
+                />
                 <span>no</span>
               </p>
             </div>
@@ -114,8 +167,12 @@ const AddItem = () => {
               <input
                 type="number"
                 name="calorie"
+                value={data.calorie} 
+                onChange={handleInputChange}
+
                 className="rounded-md focus:outline-none px-3 bg-transparent w-full"
                 placeholder="Enter the item kalorie"
+
               />
             </div>
 
@@ -144,4 +201,4 @@ const AddItem = () => {
   );
 };
 
-export default AddItem;
+export default EditItem;

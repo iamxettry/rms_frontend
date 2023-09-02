@@ -3,7 +3,6 @@ import React, { useState } from "react";
 
 import { HiBars3 } from "react-icons/hi2";
 import List from "./List";
-import Logo from "@/utils/Logo";
 import { ImLeaf } from "react-icons/im";
 import Link from "next/link";
 

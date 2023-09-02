@@ -75,33 +75,29 @@ const Signup = () => {
     const u1 = USER_REGEX.test(username);
     const v1 = PWD_REGEX.test(password);
     if (!u1 || !v1) {
-      toast.error("Invalid Entry!")
+      toast.error("Invalid Entry!");
       return;
     }
     //function for user register
 
     const res = await registerUser({ username, email, password });
 
-   
-      if (res.data) {
-        setSuccess(true);
-        setUser("");
-        setPwd("");
-        setMatchPwd("");
-        router.push("/auth/login");
-        toast.success('Register Successfully.');
-      }
+    if (res.data) {
+      setSuccess(true);
+      setUser("");
+      setPwd("");
+      setMatchPwd("");
+      router.push("/auth/login");
+      toast.success("Register Successfully.");
+    }
 
-      if (res.error) {
-        if (res.error.data.username) {
-          toast.error('Register failed:'+res.error.data.username)
-          
-        }else if(res.error.data.email){
-          
-          toast.error('Register failed:'+res.error.data.username)
-        }
+    if (res.error) {
+      if (res.error.data.username) {
+        toast.error("Register failed:" + res.error.data.username);
+      } else if (res.error.data.email) {
+        toast.error("Register failed:" + res.error.data.username);
       }
-     
+    }
   };
   const [enable, setEnable] = useState(false);
   useEffect(() => {
@@ -119,7 +115,6 @@ const Signup = () => {
           <Logo />
           <div className="shadow-gray-700 w-full bg-white rounded-lg shadow-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-black dark:bg-opacity-70 dark:border-white">
             <div className="p-6 my-2 sm:p-8">
-             
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white ">
                 Create an account
               </h1>

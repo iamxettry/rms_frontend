@@ -6,7 +6,7 @@ import { data } from "./data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const List = ({ toggle, setToggle }) => {
+const List = ({ toggle }) => {
   const pathname = usePathname();
   return (
     <>
