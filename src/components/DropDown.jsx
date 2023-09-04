@@ -8,6 +8,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { profile1 } from "../../public/assets";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 
 const DropDown = ({ toggle, setToggle }) => {
@@ -16,6 +17,7 @@ const DropDown = ({ toggle, setToggle }) => {
   const handleLogout = () => {
     // dispatch(unsetUserInfo({ username: "", email: "" }));
     // dispatch(logOut({ username: null, access_token: null }));
+    Cookies.remove("loggedin")
     removeToken();
     setTogglePorfile(!togglePorfile);
     router.push('/')
@@ -89,22 +91,26 @@ const DropDown = ({ toggle, setToggle }) => {
             </div>
             <ul className="py-2" aria-labelledby="user-menu-button">
               
-              <li>
-                <Link
-                  href="/dashboard/user"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >
-                  Dashboard
-                </Link>
-              </li>
-              <li>
+              {
+                data?.is_superuser ?<li>
                 <Link
                   href="/dashboard/admin"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                 >
                   Admin
                 </Link>
+              </li>:
+                <li>
+                <Link
+                  href="/dashboard/user"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Profile
+                </Link>
               </li>
+              }
+            
+              
               <li>
                 <a
                   href="#"

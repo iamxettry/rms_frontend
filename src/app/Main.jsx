@@ -1,11 +1,11 @@
 "use client"
 import Navbar from '@/components/Navbar'
-import React from 'react'
 import { useSelector } from "react-redux";
 import { selectCurrentMode } from '@/redux/features/darkModeSlice';
 import { ToastContainer } from 'react-toastify';
-const Main = ({children}) => {
-    let mode = useSelector(selectCurrentMode)
+const MyApp =  ({children}) => {
+  const mode = useSelector(selectCurrentMode);
+ 
   return (
     <>
     <ToastContainer></ToastContainer>
@@ -19,4 +19,4 @@ const Main = ({children}) => {
   )
 }
 
-export default Main
+export default MyApp

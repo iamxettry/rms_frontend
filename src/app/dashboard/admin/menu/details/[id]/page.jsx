@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-const page = ({ params }) => {
+const Detail = ({ params }) => {
   const { id } = params;
   const router=useRouter()
 
@@ -44,4 +44,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default Detail;

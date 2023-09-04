@@ -20,6 +20,7 @@ const AddItem = () => {
         method: "POST",
         body: formData,
       });
+
       if (res.ok) {
         const data=await res.json()
         // Handle successful response here

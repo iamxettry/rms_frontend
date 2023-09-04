@@ -7,6 +7,7 @@ import Link from "next/link";
 import { getToken, storeToken } from "@/redux/features/localStorage";
 import Logo from "@/utils/Logo";
 import { toast } from "react-toastify";
+import Cookies from  'js-cookie'
 
 export default function Login() {
   const userRef = useRef();
@@ -30,11 +31,11 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    Cookies.set("loggedin",true)
 
     const userData = await login({ email, password });
     if (userData.data) {
       storeToken(userData.data.token);
-      console.log(userData.data);
       // dispatch(setCredentials({email, access_token }));
       setEmail("");
       setPwd("");
