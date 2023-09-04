@@ -3,12 +3,11 @@
 import Details from "@/components/menu/Details";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { toast } from "react-toastify";
 
 const page = ({ params }) => {
   const { id } = params;
-  const router = useRouter();
+  const router=useRouter()
 
   const handleDelete = async () => {
     try {

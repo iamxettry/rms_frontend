@@ -22,9 +22,9 @@ const DropDown = ({ toggle, setToggle }) => {
     toast.success("Logout successful!")
     
   };
-  // const { access_token } = getToken();
-  // const { data, isSuccess } = useGetLoggedUserQuery(access_token);
-  const user=false
+  const { access_token } = getToken();
+  
+  const { data, isSuccess } = useGetLoggedUserQuery(access_token);
   const [userData, setUserData] = useState({
     email: "",
     username: "",
@@ -48,7 +48,7 @@ const DropDown = ({ toggle, setToggle }) => {
       <div className="flex relative items-center md:order-2">
         
         {
-          user?(
+          !data ? (
             <div className="px-2 bg-gray-200  py-1 mx-2 hover:bg-gray-100 hover:border-gray-400 border border-white rounded-lg dark:shadow-md dark:shadow-gray-700 dark:bg-gray-800 dark:hover:bg-transparent dark:border-gray-700  dark:border dark:hover:border-orange-200  ">
             <Link
               href="/auth/signup/"
@@ -81,10 +81,10 @@ const DropDown = ({ toggle, setToggle }) => {
           >
             <div className="px-4 py-3">
               <span className="block text-sm text-gray-900 dark:text-white">
-              {userData.username}
+              {data.username}
               </span>
               <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                {userData.email}
+                {data.email}
               </span>
             </div>
             <ul className="py-2" aria-labelledby="user-menu-button">

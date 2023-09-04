@@ -15,7 +15,7 @@ import MenuItem from "@/components/menu/MenuItem";
 const page = ({ params }) => {
   return (
     <>
-      <div className="absolute z-40 top-0 left-0 bg-green-50  py-8 dark:bg-black  lg:flex md:relative lg:gap-5">
+      <div className="absolute z-40 top-0 left-0 light_bg  py-8 dark:bg-black  lg:flex md:relative lg:gap-5">
         <div className="relative flex flex-col items-center justify-normal gap-5 lg:flex-1 ">
           <BackLight style=" h-40 w-40 top-14 left-5 blur-[100px] bg-gradient-to-r from-green-500 to-white z-0" />
           <BackLight style="h-20 w-20 md:h-24 md:w-24 top-96 right-16 bg-gradient-to-l from-green-500 to-white z-0 blur-[30px] md:blur-[50px] md:top-10 md:blur-[60px] " />

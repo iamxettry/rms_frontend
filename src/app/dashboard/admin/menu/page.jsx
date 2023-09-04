@@ -6,10 +6,11 @@ import { FaPlus } from "react-icons/fa";
 
 const AdminMenu = async () => {
   const data = await getMenu();
+
   return (
     <>
       <main className="flex flex-wrap px-2">
-        {data.count >0? (
+        {data?.count >0? (
           <>
             <div className="flex justify-end items-center w-full border-b-2 pb-3">
               <button
@@ -21,7 +22,7 @@ const AdminMenu = async () => {
               </button>
             </div>
 
-            <div className="relative  shadow-md sm:rounded-lg z-10 w-[96%] md:w-[90%] lg:w-4/5 mx-auto">
+            <div className="relative  shadow-md sm:rounded-lg z-10 w-[96%] md:w-[90%] lg:w-4/5 mx-auto mt-4">
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>

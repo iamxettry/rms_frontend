@@ -15,13 +15,14 @@ import { useState } from "react";
 import Logo from "@/utils/Logo";
 const DashNav = () => {
   const [toggle, setToggle] = useState(false);
+  const [toggleSearch, setTogglesearch] = useState(false);
 
   const pathname = usePathname();
 
   return (
     <div
       className={`${
-        toggle ? "w-32  xs:w-40  md:w-52 absolute left-0 z-20 bg-slate-400 md:bg-transparent md:relative" : "w-16 md:w-52"
+        toggle ? "w-32  xs:w-40  md:w-52 absolute left-0 z-20 bg-slate-800 md:bg-transparent md:relative" : "w-16 md:w-52"
       }   border-r min-h-screen `}
     >
       <div className="w-full my-2 border-b px-4 flex items-center justify-center gap-2">
@@ -61,15 +62,15 @@ const DashNav = () => {
         </div>
       </div>
       <div className=" md:pl-4">
-        <div className="border-2 px-2 rounded-md  md:w-48 flex items-center gap-5 mx-2 md:mx-4">
-          <i className="text-black text-opacity-50 md:text-xl">
+        <div className="border-2  px-3   rounded-md   flex items-center gap-5 mx-2 md:mx-4">
+          <i className="text-black text-opacity-50 md:text-xl dark:text-white" onClick={()=>setToggle(true)}>
             <FaSearch />
           </i>
           <input
             type="text"
             name="search"
             id="search"
-            className="py-2 focus:outline-none  w-full bg-transparent"
+            className={`py-2 focus:outline-none  w-full bg-transparent ${toggle?"flex":" p-2 "} `}
             placeholder="Search"
           />
         </div>

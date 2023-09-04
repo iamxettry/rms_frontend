@@ -2,63 +2,59 @@
 
 import Image from "next/image";
 import { hero10bgremoved } from "../../../../../../public/assets";
-import {  FaPlus } from "react-icons/fa";
-import {  RxCross2 } from "react-icons/rx";
+import { FaPlus } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-toastify";
-import {  useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 // import { FaPlus } from 'react-icons/fa'
 
 const AddItem = () => {
-    const router=useRouter()
+  const router = useRouter();
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const actualData = {
-      name: data.get("name"),
-      category: data.get("category"),
-      price: data.get("price"),
-      itemtype: data.get("itemtype"),
-    //   img: data.get("img"),
-      available: data.get("available"),
-      calorie: data.get("calorie"),
-    };
-  
-    const res = await fetch(`http://127.0.0.1:8000/api/menu/menu-list/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(actualData),
-    });
 
-    if (!res.ok) {
-      toast.error(res.statusText);
-      console.log(res);
-    }else{
-
-        const Newres = await res.json();
-
-        router.push('/dashboard/admin/menu')
-        toast.success(Newres.message)
-
+    const formData = new FormData(e.currentTarget);
+    try {
+      const res = await fetch(`http://127.0.0.1:8000/api/menu/menu-list/`, {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        const data=await res.json()
+        // Handle successful response here
+        toast.success(data.message)
+        router.push("/dashboard/admin/menu")
+      } else {
+        // Handle non-200 responses here
+        toast.error(res.statusText)
+        toast.error("Check the fields!")
+       
+      }
+    
+    } catch (error) {
+      toast.error("Network Error", error);
     }
   };
   return (
     <>
       <div className=" flex flex-col gap-3 w-72 mx-auto md:w-96 lg:w-full">
         <div className=" flex items-center justify-end my-5">
-        <Link href="/dashboard/admin/menu"  className="text-xl bg-black bg-opacity-25 hover:bg-opacity-10 p-3 rounded-full mr-5 md:mr-2 lg:mr-10" >
-          <RxCross2/>
-        </Link>
+          <Link
+            href="/dashboard/admin/menu"
+            className="text-xl bg-black dark:bg-white dark:text-black bg-opacity-25 hover:bg-opacity-10 p-3 rounded-full mr-5 md:mr-2 lg:mr-10"
+          >
+            <RxCross2 />
+          </Link>
         </div>
-        <div className="md:flex justify-between items-center gap-4">
+        <div className="md:flex justify-between items-center gap-4 dark:text-white">
           <form
             action=""
             className="   rounded-md flex-1 flex flex-col justify-center items-start "
             onSubmit={handleSumbit}
+            encType="multipart/form-data"
           >
-            <div className="flex text-black/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
+            <div className="flex text-black/80 dark:text-white/80 dark:border-white/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
               <label htmlFor="name">Name</label>
               <input
                 type="text"
@@ -67,7 +63,7 @@ const AddItem = () => {
                 placeholder="Enter the item name"
               />
             </div>
-            <div className="flex text-black/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
+            <div className="flex text-black/80 dark:text-white/80 dark:border-white/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
               <label htmlFor="category">Category</label>
               <input
                 type="text"
@@ -77,7 +73,7 @@ const AddItem = () => {
                 placeholder="Enter the item Category"
               />
             </div>
-            <div className="flex text-black/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
+            <div className="flex text-black/80 dark:text-white/80 dark:border-white/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
               <label htmlFor="price">Price</label>
               <input
                 type="number"
@@ -87,7 +83,7 @@ const AddItem = () => {
                 placeholder="Enter the product price(unit)"
               />
             </div>
-            <div className="flex text-black/80  my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center gap-5">
+            <div className="flex text-black/80 dark:text-white/80 dark:border-white/80  my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center gap-5">
               <p className="flex items-center gap-2">
                 <label htmlFor="itemtype">Item type</label>
                 <input type="radio" name="itemtype" className="ml-5 md:ml-14" />
@@ -96,20 +92,35 @@ const AddItem = () => {
                 <span>non veg</span>
               </p>
             </div>
-            {/* <div className="flex text-black/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-between items-center">
-              <label htmlFor="img">Upload Image</label>
-              <input type="file" name="img" accept="image/*" className="" />
-            </div> */}
-            <div className="flex text-black/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
+            <div className="flex  text-black/80 dark:text-white/80 dark:border-white/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-between items-center">
+              <label htmlFor="img" className="text-sm md:text-base">
+                Upload Image
+              </label>
+              <input
+                type="file"
+                name="img"
+                accept="image/*"
+                className="text-sm md:text-base"
+              />
+            </div>
+            <div className="flex text-black/80 dark:text-white/80 dark:border-white/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
               <p className="flex items-center gap-2">
                 <label htmlFor="available">Available</label>
-                <input type="radio" name="available" className="ml-5 md:ml-10" />
+                <input
+                  type="radio"
+                  name="available"
+                  className="ml-5 md:ml-10"
+                />
                 <span>yes</span>
-                <input type="radio" name="available" className="ml-4 md:ml-10" />
+                <input
+                  type="radio"
+                  name="available"
+                  className="ml-4 md:ml-10"
+                />
                 <span>no</span>
               </p>
             </div>
-            <div className="flex text-black/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
+            <div className="flex text-black/80 dark:text-white/80 dark:border-white/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center">
               <label htmlFor="calorie">Calorie</label>
               <input
                 type="number"

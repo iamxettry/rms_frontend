@@ -7,9 +7,9 @@ import { Btn } from "@/utils/Btn";
 const CreateMenu = () => {
   return (
     <>
-      <div className="w-72 my-4 rounded-md bg-white border shadow-md hover:shadow-lg hover:scale-105 transition-all ease-in">
+      <div className="md:w-72  my-4 rounded-md bg-white border shadow-md hover:shadow-lg hover:scale-105 transition-all ease-in">
         <Image src={menu} height="auto" width="auto" priority alt="hero" />
-        <h1 className="text-start font-bold py-2">Create a Menu</h1>
+        <h1 className="text-start font-bold py-2 text-black pl-5">Create a Menu</h1>
 
         <div className="flex justify-end items-center mr-2">
     
@@ -18,7 +18,6 @@ const CreateMenu = () => {
             <span className="relative px-3 py-2.5  bg-white dark:bg-black rounded-md group-hover:bg-opacity-0 flex items-center gap-2">
           <FaPlus />
               <Btn title="Create" path="menu/add-item" available={true} />
-              {/* <span>Create</span> */}
             </span>
           </button>
         

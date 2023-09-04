@@ -1,4 +1,3 @@
-"use client";
 import getItem from "@/lib/getItem";
 import Image from "next/image";
 import React from "react";
@@ -18,9 +17,10 @@ const Details = async ({ id }) => {
       </div>
       <div className="flex flex-col items-center gap-4 md:flex-row ">
         <Image
+          // src={`http://127.0.0.1:8000${data.img}`}
           src={hero1}
-          height={"auto"}
-          width={"auto"}
+          height="auto"
+          width="auto"
           priority
           alt="hero"
           className="rounded-md md:w-60"

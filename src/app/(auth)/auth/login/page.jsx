@@ -34,10 +34,16 @@ export default function Login() {
     const userData = await login({ email, password });
     if (userData.data) {
       storeToken(userData.data.token);
+      console.log(userData.data);
       // dispatch(setCredentials({email, access_token }));
       setEmail("");
       setPwd("");
-      router.push("/");
+      if (userData.data.superUser) {
+        router.push("/dashboard/admin");
+      }else{
+        
+        router.push("/");
+        }
       toast.success("Login Successfully.");
     }
 
