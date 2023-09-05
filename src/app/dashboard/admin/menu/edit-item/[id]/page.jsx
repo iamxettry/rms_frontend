@@ -26,10 +26,9 @@ const EditItem = ({ params }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/menu/menu-item/${id}/`,
+          `http://127.0.0.1:8000/api/menu/menuitems/${id}/`,
           { next: { revalidate: 0 } }
         );
-
         if (response.ok) {
           const data = await response.json();
           // Set the retrieved data as the initial form values

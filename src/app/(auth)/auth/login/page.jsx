@@ -31,12 +31,18 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    Cookies.set("loggedin",true)
 
     const userData = await login({ email, password });
     if (userData.data) {
-      storeToken(userData.data.token);
-      // dispatch(setCredentials({email, access_token }));
+      
+      // storeToken(userData.data.token);//currently not using localstorage
+
+      // save the access token and refresh token in cookies
+      Cookies.set("loggedin",true)
+      const { access, refresh }=userData.data.token
+      Cookies.set('access_token',access)
+      Cookies.set('refresh_token',refresh)
+      Cookies.set('superuser',userData.data.superUser)
       setEmail("");
       setPwd("");
       if (userData.data.superUser) {

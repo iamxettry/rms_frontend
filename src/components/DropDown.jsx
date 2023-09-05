@@ -14,37 +14,21 @@ import Cookies from "js-cookie";
 const DropDown = ({ toggle, setToggle }) => {
   const [togglePorfile, setTogglePorfile] = useState(false);
   const router=useRouter()
+  const accessToken = Cookies.get('access_token');
   const handleLogout = () => {
-    // dispatch(unsetUserInfo({ username: "", email: "" }));
-    // dispatch(logOut({ username: null, access_token: null }));
+
     Cookies.remove("loggedin")
-    removeToken();
+    Cookies.remove("access_token")
+    Cookies.remove("refresh_token")
+    Cookies.remove("superuser")
     setTogglePorfile(!togglePorfile);
     router.push('/')
     toast.success("Logout successful!")
     
   };
-  const { access_token } = getToken();
   
-  const { data, isSuccess } = useGetLoggedUserQuery(access_token);
-  const [userData, setUserData] = useState({
-    email: "",
-    username: "",
-  });
-
-  // Store User Data in Local State
-  // useEffect(() => {
-  //   if (data && isSuccess) {
-      
-  //     setUserData({
-  //       email: data.email,
-  //       username: data.username,
-  //     }
-  //     );
-
-  //   }
-  // }, [data, isSuccess]);
-
+  const { data, isSuccess } = useGetLoggedUserQuery(accessToken);
+ 
   return (
     <>
       <div className="flex relative items-center md:order-2">

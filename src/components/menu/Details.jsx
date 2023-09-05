@@ -7,6 +7,7 @@ import Link from "next/link";
 
 const Details = async ({ id }) => {
   const data = await getItem(id);
+  console.log(data);
   return (
     <div className="w-64 xs:w-72 mx-auto px-2 md:w-auto md:mx-2">
       <div className="flex gap-2 items-center py-2 my-2">
@@ -17,7 +18,7 @@ const Details = async ({ id }) => {
       </div>
       <div className="flex flex-col items-center gap-4 md:flex-row ">
         <Image
-          // src={`http://127.0.0.1:8000${data.img}`}
+          // src={data.img}
           src={hero1}
           height="auto"
           width="auto"

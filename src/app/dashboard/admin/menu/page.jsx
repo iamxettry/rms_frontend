@@ -6,7 +6,6 @@ import { FaPlus } from "react-icons/fa";
 
 const AdminMenu = async () => {
   const data = await getMenu();
-
   return (
     <>
       <main className="flex flex-wrap px-2">
