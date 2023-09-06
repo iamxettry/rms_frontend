@@ -38,10 +38,10 @@ export default function Login() {
       // storeToken(userData.data.token);//currently not using localstorage
 
       // save the access token and refresh token in cookies
-      Cookies.set("loggedin",true)
+      Cookies.set("loggedin",true,{ expires: 1 })
       const { access, refresh }=userData.data.token
-      Cookies.set('access_token',access)
-      Cookies.set('refresh_token',refresh)
+      Cookies.set('access_token',access,{ expires: 1 })
+      Cookies.set('refresh_token',refresh,{ expires: 30 })
       Cookies.set('superuser',userData.data.superUser)
       setEmail("");
       setPwd("");
@@ -61,13 +61,6 @@ export default function Login() {
     }
   
   };
-  // let { access_token } = getToken()
-
-  // useEffect(()=>{
-
-  //   dispatch(setCredentials({ access_token, email:user }));
-
-  // },[access_token,dispatch])
   return (
     <>
       <main className="bg-green-50 dark:bg-black ">

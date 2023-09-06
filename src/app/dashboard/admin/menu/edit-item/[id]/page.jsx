@@ -161,7 +161,7 @@ const EditItem = ({ params }) => {
                   name="itemtype"
                   className="ml-4 md:ml-14"
                   value={data.itemtype}
-                  checked={data.itemtype}
+                  checked={!data.itemtype}
                   onChange={handleInputChange}
                 />
                 <span>non veg</span>
@@ -194,7 +194,7 @@ const EditItem = ({ params }) => {
                   name="available"
                   className="ml-4 md:ml-10"
                   value={data.available}
-                  checked={data.available}
+                  checked={!data.available}
                   onChange={handleInputChange}
                 />
                 <span>no</span>

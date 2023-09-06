@@ -18,10 +18,10 @@ const Details = async ({ id }) => {
       </div>
       <div className="flex flex-col items-center gap-4 md:flex-row ">
         <Image
-          // src={data.img}
-          src={hero1}
-          height="auto"
-          width="auto"
+          src={data.img}
+          // src={hero1}
+          height={200}
+          width={300}
           priority
           alt="hero"
           className="rounded-md md:w-60"
@@ -42,6 +42,14 @@ const Details = async ({ id }) => {
             <div className="flex items-center justify-between ">
               <h1>Price</h1>
               <h1>{data.price}</h1>
+            </div>
+            <div className="flex items-center justify-between ">
+              <h1>Available</h1>
+              <h1>{data.available?"available":"not available"}</h1>
+            </div>
+            <div className="flex items-center justify-between ">
+              <h1>Type</h1>
+              <h1>{data.itemtype?"veg":"non veg"}</h1>
             </div>
             <div className="flex items-center justify-between ">
               <h1>Kkal</h1>

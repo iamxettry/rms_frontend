@@ -87,9 +87,9 @@ const AddItem = () => {
             <div className="flex text-black/80 dark:text-white/80 dark:border-white/80  my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center gap-5">
               <p className="flex items-center gap-2">
                 <label htmlFor="itemtype">Item type</label>
-                <input type="radio" name="itemtype" className="ml-5 md:ml-14" />
+                <input type="radio" name="itemtype" className="ml-5 md:ml-14" value={true} />
                 <span>veg</span>
-                <input type="radio" name="itemtype" className="ml-4 md:ml-14" />
+                <input type="radio" name="itemtype" className="ml-4 md:ml-14" value={false} />
                 <span>non veg</span>
               </p>
             </div>
@@ -111,12 +111,14 @@ const AddItem = () => {
                   type="radio"
                   name="available"
                   className="ml-5 md:ml-10"
+                  value={true}
                 />
                 <span>yes</span>
                 <input
                   type="radio"
                   name="available"
                   className="ml-4 md:ml-10"
+                  value={false}
                 />
                 <span>no</span>
               </p>
