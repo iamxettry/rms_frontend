@@ -25,19 +25,19 @@ const MenuItem = ({ item }) => {
             />
           )
         }
-        <Link href={`/menu/${item.name}`} className="w-full flex flex-col items-center">
+        <Link href={`/menu/${'momo'}`} className="w-full flex flex-col items-center">
           <BackLight style=" h-20 w-20 top-12 left-10 blur-[50px]  bg-gradient-to-r from-green-500 to-white" />
 
-          <Image
+          {/* <Image
             src={item.img}
             priority
             height={200}
             width={300}
-            className=""
+            className=" rounded-lg"
             alt="salad"
-          />
+          /> */}
           <h1 className="text-start w-full text-black text-opacity-80  text-lg my-2 dark:text-white">
-            <b>{item.name}</b>
+            {/* <b>{item.name}</b> */}
           </h1>
           <div className="flex justify-between items-center w-full">
             <p className="text-black text-opacity-80 dark:text-white">

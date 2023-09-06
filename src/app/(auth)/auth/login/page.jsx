@@ -7,11 +7,10 @@ import Link from "next/link";
 import { getToken, storeToken } from "@/redux/features/localStorage";
 import Logo from "@/utils/Logo";
 import { toast } from "react-toastify";
-import Cookies from  'js-cookie'
+import Cookies from "js-cookie";
 
 export default function Login() {
   const userRef = useRef();
-
 
   const [email, setEmail] = useState("");
   const [password, setPwd] = useState("");
@@ -31,35 +30,35 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const userData = await login({ email, password });
+      if (userData.data) {
+        // storeToken(userData.data.token);//currently not using localstorage
 
-    const userData = await login({ email, password });
-    if (userData.data) {
-      
-      // storeToken(userData.data.token);//currently not using localstorage
-
-      // save the access token and refresh token in cookies
-      Cookies.set("loggedin",true,{ expires: 1 })
-      const { access, refresh }=userData.data.token
-      Cookies.set('access_token',access,{ expires: 1 })
-      Cookies.set('refresh_token',refresh,{ expires: 30 })
-      Cookies.set('superuser',userData.data.superUser)
-      setEmail("");
-      setPwd("");
-      if (userData.data.superUser) {
-        router.push("/dashboard/admin");
-      }else{
-        
-        router.push("/");
+        // save the access token and refresh token in cookies
+        Cookies.set("loggedin", true, { expires: 10 });
+        const { access, refresh } = userData.data.token;
+        Cookies.set("access_token", access, { expires: 10 });
+        Cookies.set("refresh_token", refresh, { expires: 30 });
+        Cookies.set("superuser", userData.data.superUser);
+        setEmail("");
+        setPwd("");
+        if (userData.data.superUser) {
+          router.push("/dashboard/admin");
+        } else {
+          router.push("/");
         }
-      toast.success("Login Successfully.");
-    }
+        toast.success("Login Successfully.");
+      }
 
-    if (userData.error) {
-      toast.error(userData.error.data.detail);
-      setEmail("");
-      setPwd("");
+      if (userData.error) {
+        toast.error(userData.error.data.detail);
+        setEmail("");
+        setPwd("");
+      }
+    } catch (error) {
+      toast.error("Connection Failed!!!")
     }
-  
   };
   return (
     <>

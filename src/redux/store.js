@@ -6,6 +6,7 @@ export const store = configureStore({
   reducer: {
     [userApi.reducerPath]: userApi.reducer,
     dark:darkReducer,
+
   },
 
   middleware: (getDefaultMiddleware) =>
