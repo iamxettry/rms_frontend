@@ -1,8 +1,11 @@
 import React from "react";
 import MenuNav from "./MenuNav";
 import MenuItem from "./MenuItem";
+import getMenu from "@/lib/getMenu";
 
-const MenuList = () => {
+const MenuList = async () => {
+  const data =await getMenu()
+  console.log(data);
   return (
     <>
       {/* menu nav category */}
@@ -13,13 +16,13 @@ const MenuList = () => {
       <div>
         <div className="grid grid-cols-2 rounded-lg md:grid-cols-3 lg:grid-cols-4">
           {/* map the items */}
-            <MenuItem  title="Seafood Salad" />
-            <MenuItem  title="Momo" />
-            <MenuItem  title="Avocada salad"/>
-            <MenuItem  title="Fish "/>
-            <MenuItem  title="Fish "/>
-            <MenuItem  title="Fish "/>
-            <MenuItem  title="Fish "/>
+          {
+            data?.map((item)=>(
+
+              <MenuItem key={item.key} item={item} />
+            ))
+          }
+       
             
         </div>
       </div>
