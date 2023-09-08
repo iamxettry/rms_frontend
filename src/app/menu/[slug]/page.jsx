@@ -11,6 +11,8 @@ import IncDec from "@/components/menu/IncDec";
 import BackLight from "@/components/backLight/Backlight";
 import getItem from "@/lib/getItem";
 import CartItem from "./CartItem";
+import { useSelector } from "react-redux";
+import { selectCount } from "@/redux/features/orderSlice";
 
 const page =async ({ params }) => {
   const {slug}=params

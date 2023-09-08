@@ -34,13 +34,14 @@ export default function Login() {
       const userData = await login({ email, password });
       if (userData.data) {
         // storeToken(userData.data.token);//currently not using localstorage
-
         // save the access token and refresh token in cookies
         Cookies.set("loggedin", true, { expires: 10 });
         const { access, refresh } = userData.data.token;
         Cookies.set("access_token", access, { expires: 10 });
         Cookies.set("refresh_token", refresh, { expires: 30 });
-        Cookies.set("superuser", userData.data.superUser);
+        Cookies.set("superuser", userData.data.superUser,{ expires: 10 });
+        Cookies.set("userId",userData.data.user_id,{ expires: 10 })
+
         setEmail("");
         setPwd("");
         if (userData.data.superUser) {

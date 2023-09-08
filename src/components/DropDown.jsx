@@ -21,6 +21,8 @@ const DropDown = ({ toggle, setToggle }) => {
     Cookies.remove("access_token")
     Cookies.remove("refresh_token")
     Cookies.remove("superuser")
+    Cookies.remove("userId")
+    Cookies.remove("count")
     setTogglePorfile(!togglePorfile);
     router.push('/')
     toast.success("Logout successful!")
@@ -29,7 +31,6 @@ const DropDown = ({ toggle, setToggle }) => {
   
   const { data } = useGetLoggedUserQuery(accessToken);
   const userId=data?.id
-  Cookies.set("user",userId)
  
   return (
     <>

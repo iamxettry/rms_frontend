@@ -8,10 +8,18 @@ import { FaPlus, FaHeart } from "react-icons/fa";
 import { AiOutlineHeart } from "react-icons/ai";
 import Link from "next/link";
 import BackLight from "../backLight/Backlight";
-const MenuList = async () => {
+import { useEffect, useState } from "react";
+const MenuList =  () => {
   // const [favourite, setfavourite] = useState(false);
+  const [menuData, setMenuData] = useState([])
+  useEffect(()=>{
+    const fetchData= async()=>{
 
-  const data = await getMenu();
+      const data = await getMenu();
+      setMenuData(data)
+    }
+    fetchData()
+  },[])
   return (
     <>
       {/* menu nav category */}
@@ -22,7 +30,7 @@ const MenuList = async () => {
       <div>
         <div className="grid grid-cols-2 rounded-lg md:grid-cols-3 lg:grid-cols-4">
           {/* map the items */}
-          {data?.map((item) => (
+          {menuData?.map((item) => (
             <div className="flex flex-col items-center  bg-slate-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white  " key={item.id}>
               {/* {
                 // later change based through database

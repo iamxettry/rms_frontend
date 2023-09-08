@@ -7,52 +7,52 @@ export const data = [{
         icon: HiSquares2X2,
 
         hover: "Dashboard",
-        path:"/dashboard"
-
-    },
-    {
-        id: "user",
-        title: "User",
-        icon: HiUser,
-
-        hover: "User",
         path:"/dashboard/user"
 
     },
-    {
-        id: "message",
-        title: "Message",
-        icon: HiChatBubbleLeft,
+    // {
+    //     id: "user",
+    //     title: "User",
+    //     icon: HiUser,
 
-        hover: "Message",
-        path:"/dashboard/message"
+    //     hover: "User",
+    //     path:"dashboard/user/myorder"
 
-    },
-    {
-        id: "analytic",
-        title: "Analytic",
-        icon: HiChartPie,
+    // },
+    // {
+    //     id: "message",
+    //     title: "Message",
+    //     icon: HiChatBubbleLeft,
 
-        hover: "Analytic",
-        path:"/dashboard/analytic"
+    //     hover: "Message",
+    //     path:"/dashboard/message"
 
-    },
-    {
-        id: "file",
-        title: "File Manager",
-        icon: HiFolder,
+    // },
+    // {
+    //     id: "analytic",
+    //     title: "Analytic",
+    //     icon: HiChartPie,
 
-        hover: "Files",
-        path:"/dashboard/file"
+    //     hover: "Analytic",
+    //     path:"/dashboard/analytic"
 
-    },
+    // // },
+    // {
+    //     id: "file",
+    //     title: "File Manager",
+    //     icon: HiFolder,
+
+    //     hover: "Files",
+    //     path:"/dashboard/file"
+
+    // },
     {
         id: "order",
         title: "Order",
         icon: HiShoppingCart,
 
         hover: "Order",
-        path:"/dashboard/order"
+        path:"/dashboard/user/myorder"
 
     },
     {

@@ -2,7 +2,7 @@
 import getOrderList from "@/lib/getOrderList";
 import React, { useEffect, useState } from "react";
 
-const Orders = async () => {
+const Orders =  () => {
   const [order, setOrder] = useState(null);
   const [value, setValue] = useState(false);
 
@@ -18,7 +18,6 @@ const Orders = async () => {
 
     fetchData();
   }, []);
-  console.log(order);
 
   const handleCheckboxChange = (e, orderId) => {
     const { checked } = e.target;

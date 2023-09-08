@@ -1,17 +1,27 @@
 "use client";
+import { selectCount } from "@/redux/features/orderSlice";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { BiShoppingBag } from "react-icons/bi";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 const CartItem = ({ slug }) => {
-  const count = Cookies.get("count");
+  // const count = Cookies.get("count");
+  let count= useSelector(selectCount)
   // const { slug } = params;
-  const userId = Cookies.get("user");
+  const userId = Cookies.get("userId");
+
+  const router= useRouter()
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(22);
+    let verify=Cookies.get('loggedin')
+    console.log(verify);
+    if (!verify) {
+      router.push('/auth/login')
+    }
     try {
       const res = await fetch(`http://127.0.0.1:8000/api/order/cart/`, {
         method: "POST",
@@ -21,9 +31,13 @@ const CartItem = ({ slug }) => {
         body: JSON.stringify({quantity:count,u_id:userId,f_id:slug}),
       });
        if (res.ok) {
-        console.log("successful");
+        const data=await res.json()
+        console.log("successful",data);
+       }else{
+        toast.error('not logged in')
        }
     } catch (error) {
+      
         toast.error("connection Failed!!")
     }
   };

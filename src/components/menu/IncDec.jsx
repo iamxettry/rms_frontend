@@ -1,26 +1,36 @@
 'use client'
 
+import { selectCount, setProductCount } from "@/redux/features/orderSlice"
 import Cookies from "js-cookie"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FaMinus, FaPlus } from "react-icons/fa"
+import { useDispatch, useSelector } from "react-redux"
 
 const IncDec = ({data}) => {
     const [count, setCount] = useState(1)
      // Function to increment  the count
+    const dispatch=useDispatch()
 
-  const incrementCount = () => {
+     const incrementCount = () => {
     
-    setCount(count + 0.5);
-    Cookies.set('count',count)
-  };
+      setCount(count + 0.5);
+      // Cookies.set('count',count)
 
-  // Function to decrement the count
-  const decrementCount = () => {
-    if (count >= 1) {
-        setCount(count - 0.5);
-        Cookies.set('count',count)
-      }
-  };
+    };
+  
+    // Function to decrement the count
+    const decrementCount = () => {
+      if (count >= 1) {
+          setCount(count - 0.5);
+        }
+    };
+     useEffect(()=>{
+  
+      // Cookies.set('count',count)
+      dispatch(setProductCount(count))
+
+     },[count, dispatch])
+  
   const totalPrice=count*data.price
   return (
     <>

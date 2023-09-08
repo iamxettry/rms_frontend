@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export function middleware(request) {
   let verify = request.cookies.has("loggedin");
   let { url } = request;
-
+  let super_user=request.cookies.get('superuser')
   if (!verify && url.includes("/dashboard")) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
@@ -12,26 +12,23 @@ export function middleware(request) {
   if (verify && url.includes("/auth")) {
     return NextResponse.redirect(new URL("/", request.url));
   }
+  // if (verify && super_user.value && url.includes("/dashboard")) {
+  //   return NextResponse.redirect(new URL("/dashboard/admin", request.url));
+  // }
   // if (
-  //     verify &&
-  //     super_user.value &&
-  //     url.includes("/dashboard")
-  //   ) {
-  //     return NextResponse.redirect(new URL("/dashboard/admin", request.url));
-  //   }
-  //   if (
-  //     verify &&
-  //     super_user &&
-  //     (url.includes("/dashboard") || url.includes("/dashboard/user"))
-  //   ) {
-  //     return NextResponse.redirect(new URL("/dashboard/admin", request.url));
-  //   }
-  //   if ( verify &&
-  //     !super_user &&
-  //     (url.includes("/dashboard") || url.includes("/dashboard/admin"))
-  //   ) {
-  //     return NextResponse.redirect(new URL("/dashboard/user", request.url));
-  //   }
+  //   verify &&
+  //   super_user &&
+  //   (url.includes("/dashboard") || url.includes("/dashboard/user"))
+  // ) {
+  //   return NextResponse.redirect(new URL("/dashboard/admin", request.url));
+  // }
+  // if (
+  //   verify &&
+  //   !super_user &&
+  //   (url.includes("/dashboard") || url.includes("/dashboard/admin"))
+  // ) {
+  //   return NextResponse.redirect(new URL("/dashboard/user", request.url));
+  // }
 }
 
 // See "Matching Paths" below to learn more

@@ -8,8 +8,7 @@ const orderSlice = createSlice({
   reducers: {
     setProductCount: (state, action) => {
         console.log('count',action.payload);
-  
-        state.count = action.payload.count
+        state.value = action.payload
       },
    
   },
@@ -18,4 +17,4 @@ const orderSlice = createSlice({
 export const { setProductCount } = orderSlice.actions
 export default orderSlice.reducer
 
-export const selectCount = (state) => state.productno.count
+export const selectCount = (state) => state.counter.value
