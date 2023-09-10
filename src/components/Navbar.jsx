@@ -51,7 +51,9 @@ const Navbar = () => {
                 <DarkModeToggle />
               </div>
               {Navlink.map((link, index) => {
-                let isActive = pathname === link.path;
+               let isActive = pathname===link.path ;
+               
+                
                 return (
                   <Link
                     href={link.path}

@@ -43,7 +43,7 @@ const IncDec = ({data}) => {
                 <FaPlus onClick={incrementCount} />
               </i>
             </div>
-            <h1 className="flex flex-col md:flex-row bg-slate-200 dark:bg-opacity-10  dark:text-white p-2  rounded-md">
+            <h1 className="flex flex-row bg-slate-200 dark:bg-opacity-10  dark:text-white p-2  rounded-md">
               <span className="font-bold text-sm xs:text-xl w-32 text-black text-opacity-60 text-center dark:text-white ">
                 Total Price
               </span>

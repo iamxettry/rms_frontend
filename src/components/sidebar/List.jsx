@@ -40,20 +40,20 @@ const List = ({ toggle }) => {
            
           return (
             <li
-              className={`${isActive?"bg-green-200 dark:bg-white  text-black dark:hover:text-white ":"dark:text-white"} group text-black  hover:bg-green-200 dark:hover:bg-slate-800 hover:text-black rounded-xl my-2  relative`}
+              className={`${isActive?"bg-green-200 dark:bg-orange-300  text-black dark:hover:text-white ":"dark:text-white"} group text-black  hover:bg-green-200 dark:hover:bg-slate-800 hover:text-black rounded-xl my-1 md:my-2  relative`}
               key={item.id}
             >
               <Link
                 href={`${item.path}`}
-                className={`h-[50px]  flex items-center justify-start gap-6 ${
-                  toggle ? "pl-4 text-xl " : "justify-center text-3xl"
+                className={`p-2 md:h-[50px]  flex items-center justify-start gap-6 ${
+                  toggle ? "pl-4 text-base " : "justify-center text-3xl"
                 }`}
               >
-                <i className="h-full   flex justify-center items-center">
+                <i className="text-lg md:text-2xl h-full   flex justify-center items-center text-gray-700 dark:text-white">
                   <item.icon />
                 </i>
 
-                <span className={` ${toggle ? "text-lg " : "hidden"}`}>
+                <span className={` ${toggle ? "text-base md:text-lg" : "hidden"}`}>
                   {item.title}
                 </span>
               </Link>

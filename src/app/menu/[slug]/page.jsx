@@ -28,7 +28,7 @@ const page =async ({ params }) => {
           {/* top icons */}
           <div className="flex flex-col items-center justify-normal gap-5 md:flex-row ">
             <Link href={"/menu"} className="">
-              <MdExpandLess className="absolute -rotate-90 text-4xl  left-0 top-1 z-20" />
+              <MdExpandLess className="absolute -rotate-90 text-4xl  left-0 md:-left-3 md:-top-2 top-1 z-20" />
             </Link>
             <BiDotsVerticalRounded className="absolute right-0 text-3xl top-1 md:hidden z-20" />
             {/* left section  */}
@@ -39,7 +39,7 @@ const page =async ({ params }) => {
                 priority
                 height={100}
                 width={100}
-                className="z-20 relative w-[350px] md:w-[200px] lg:w-[250px] rounded-md"
+                className="z-20 relative   w-[250px] h-[250px] xs:h-auto  xs:w-[350px] md:w-[200px] lg:w-[250px] rounded-md"
                 alt="salad"
               />
 
@@ -58,7 +58,7 @@ const page =async ({ params }) => {
             <div className="flex flex-col gap-5 flex-1 ">
               {/* Title */}
               <div className="flex justify-between w-full items-center px-6 text-3xl dark:text-white">
-                <h1 className="md:text-2xl">
+                <h1 className="md:text-2xl capitalize">
                   <b>{data.name}</b>
                 </h1>
                 <p className="flex gap-2 items-center justify-center text-2xl">

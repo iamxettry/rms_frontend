@@ -1,10 +1,11 @@
 "use client";
 import getOrderList from "@/lib/getOrderList";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { ImCheckmark, ImCross } from "react-icons/im";
 
 const Orders =  () => {
   const [order, setOrder] = useState(null);
-  const [value, setValue] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,38 +19,62 @@ const Orders =  () => {
 
     fetchData();
   }, []);
+    // Group orders by user
+    const ordersByUser = {};
+    if (order) {
+      order.result.forEach((order) => {
+        const userId = order.account.id;
+        if (!ordersByUser[userId]) {
+          ordersByUser[userId] = [];
+        }
+        ordersByUser[userId].push(order);
+      });
+    }
 
-  const handleCheckboxChange = (e, orderId) => {
-    const { checked } = e.target;
-    setOrder((prevOrder) => ({
-      ...prevOrder,
-      result: prevOrder.result.map((orderItem) =>
-        orderItem.id === orderId
-          ? { ...orderItem, completed: checked }
-          : orderItem
-      ),
-    }));
+     // Function to split date and time
+  const splitDateAndTime = (dateTimeString) => {
+    const [datePart, timePart] = dateTimeString.split("T");
+    return { datePart, timePart };
   };
-  const handleSubmit = async (e, orderId) => {
-    e.preventDefault();
-    const orderItem = order.result.find((item) => item.id === orderId);
+  const extractHourMinute = (timePart) => {
+    const [hour, minute] = timePart.split(":").slice(0, 2); // Take only hour and minute
+    return `${hour}:${minute}`;
+  };
  
-    const requestData = {
-      completed: orderItem.completed,
-    };
+// Handle the checkbox 
+const handleCheckboxChange = async (userId) => {
+  // Send PUT request to update completed status to true
+  console.log(userId);
+  try {
     const res = await fetch(
-      `http://127.0.0.1:8000/api/order/orders/${orderId}/`,
+      `http://127.0.0.1:8000/api/order/orders/${userId}/`,
       {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json", 
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestData),
+        body: JSON.stringify({completed: true }), // Set completed to true
       }
     );
-
-    console.log(res);
-  };
+  
+    if (res.ok) {
+      // If the PUT request is successful, update the local state (order.completed)
+      setOrder((prevOrder) => ({
+        ...prevOrder,
+        result: prevOrder.result.map((orderItem) =>
+          orderItem.account.id === userId
+            ? { ...orderItem, completed: true }
+            : orderItem
+        ),
+      }));
+    }else{
+      const err= await res.json()
+      console.log(err);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   return (
     <>
@@ -60,20 +85,13 @@ const Orders =  () => {
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
-                    <th scope="col" className="px-4 py-3">
-                      Product name
-                    </th>
-
-                    <th scope="col" className="px-4 py-3 ">
+                  <th scope="col" className="px-4 py-3 ">
                       User
                     </th>
-                    <th scope="col" className="px-4 py-3 ">
-                      Price (unit)
+                    <th scope="col" className="px-4 py-3">
+                      Order_Date
                     </th>
-                    <th scope="col" className=" px-4 py-3">
-                      quantity
-                    </th>
-                    <th scope="col" className=" px-4 py-3">
+                    <th scope="col" className="px-4 py-3">
                       Completed
                     </th>
 
@@ -83,39 +101,70 @@ const Orders =  () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {order.result.map((order) => (
-                    <tr
-                      key={order.id}
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                    >
-                      <td scope="row" className="px-4 py-4 ">
-                        {order.menu_item.name}
+                {Object.keys(ordersByUser).map((userId) => (
+                ordersByUser[userId].map((order, index) => (
+                  <tr
+                    key={order.id}
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                  >
+                    {index === 0 ? (
+                      <td scope="row" rowSpan={ordersByUser[userId].length} className="px-4 py-3 capitalize">
+                        <Link
+                        href={`/dashboard/admin/orders/${order.account.id}`}
+                        className={"font-bold hover:underline"}
+                      >
+                        {order.account.username}
+                      </Link>
+                        
                       </td>
-                      <td scope="row">{order.account.username}</td>
-                      <td className="px-4 py-4 ">{order.menu_item.price}</td>
-                      <td className="px-4 py-4 ">{order.quantity}</td>
-                      <td className="px-4 py-4 ">No</td>
-
-                      <td className="px-4 py-4 text-right">
-                        <form onSubmit={(e) => handleSubmit(e, order.id)}>
-                          <label htmlFor={`completed-${order.id}`}>
+                    ) : null}
+                    {index === 0 ? (
+                      <td scope="row" rowSpan={ordersByUser[userId].length} className="px-4 py-3 text-center">
+                         {splitDateAndTime(order.order_date).datePart}
+                        <br />
+                        {extractHourMinute(splitDateAndTime(order.order_date).timePart)}
+                      </td>
+                    ) : null}
+                    {index === 0 ? (
+                      <td scope="row" rowSpan={ordersByUser[userId].length} className="px-4 py-3 flex justify-center items-center ">
+                        {
+                          order.completed?<ImCheckmark className="text-green-500"/>:<ImCross className="text-red-600"/>
+                        }
+                      </td>
+                    ) : null}
+                    {index === 0 && !order.completed ? (
+                      <td className="px-4 py-4 ">
+                       <label htmlFor={`completed-${order.id}`}>
                             <input
                               type="checkbox"
                               id={`completed-${order.id}`}
                               name={`completed-${order.id}`}
-                              // value={value}
-                              onChange={(e) =>
-                                handleCheckboxChange(e, order.id)
+                                onChange={(e) =>
+                                handleCheckboxChange(order.account.id)
                               }
+                              
                               checked={order.completed}
                             />
+                           
                           </label>
-                          <button type="submit">Submit</button>
-                        </form>
-                        
-                      </td>
-                    </tr>
-                  ))}
+                    </td>
+                    ) : null}
+                    {index === 0 ? (
+                      <td className="px-4 py-4 ">
+                      <Link
+                        href={`/dashboard/admin/orders/${order.account.id}`}
+                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      >
+                        View
+                      </Link>
+                    </td>
+                    ) : null}
+                    
+                    
+                  </tr>
+                ))
+              ))}
+                  
                 </tbody>
               </table>
             </div>

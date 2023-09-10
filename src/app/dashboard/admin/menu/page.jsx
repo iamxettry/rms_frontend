@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import CreateMenu from "@/components/admin-menu/CreateMenu";
 import getMenu from "@/lib/getMenu";
 import Link from "next/link";
@@ -7,17 +7,27 @@ import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
 
-const AdminMenu =  () => {
-  const [data, setData] = useState([])
-  console.log(data);
-  const router=useRouter()
-  useEffect(()=>{
-    const fetchData=async ()=>{
-      const fetchData = await getMenu();
-      setData(fetchData)
-    }
-    fetchData()
-  },[data])
+const AdminMenu = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://127.0.0.1:8000/api/menu/menu-list/", {
+          next: { revalidate: 10 },
+        });
+
+        if (res.ok) {
+          const fetchData = await res.json();
+          setData(fetchData);
+        } else {
+          toast.error("Data fetching Error");
+        }
+      } catch (error) {
+        return "Fetch Error";
+      }
+    };
+    fetchData();
+  }, []);
   const handleDelete = async (id) => {
     try {
       const res = await fetch(
@@ -27,10 +37,10 @@ const AdminMenu =  () => {
         }
       );
       if (res.ok) {
-        toast.success("Data Deleted Successfully!")
+        toast.success("Data Deleted Successfully!");
         setData((prevOrderData) =>
-        prevOrderData.result.filter((item) => item.id !== id)
-      );
+          prevOrderData.result.filter((item) => item.id !== id)
+        );
       } else {
         const data = await res.json();
         if (data.error) {
@@ -52,7 +62,7 @@ const AdminMenu =  () => {
                 className="md:mr-20 mr-6 flex  items-center justify-start gap-3  rounded-lg p-0.5  bg-gradient-to-br from-orange-500 to-pink-500 "
               >
                 <Link
-                  href={"/menu/add-item"}
+                  href={"/dashboard/admin/menu/add-item"}
                   className="flex items-center justify-center gap-3 px-3 py-2.5 dark:bg-black rounded-md bg-white"
                 >
                   <FaPlus className="" />
@@ -65,40 +75,33 @@ const AdminMenu =  () => {
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
-                    <th scope="col" className=" md:px-2 py-3">
+                    <th
+                      scope="col"
+                      className="px-4 hidden md:flex md:px-2 py-3"
+                    >
                       Product name
+                    </th>
+                    <th scope="col" className="px-4 md:hidden md:px-2 py-3">
+                      Name
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3 hidden md:flex items-center"
+                      className="px-4 py-3 hidden  items-center"
                     >
                       Category
-                      
                     </th>
                     <th scope="col" className="px-4 py-3 ">
-                      <div className="md:flex items-center">
-                        Price
-                        
-                      </div>
+                      Price
                     </th>
                     <th scope="col" className="hidden px-4 py-3">
-                      <div className="flex  items-center">
-                        Item type
-                        
-                      </div>
+                      Item type
                     </th>
                     <th scope="col" className="px-4 py-3 hidden ">
-                      <div className=" flex items-center">
-                        Available
-                        
-                      </div>
+                      Available
                     </th>
                     <th scope="col" className="px-4 py-3 hidden md:flex">
-                      <div className="flex  items-center">
-                        Calorie
-                        
-                      </div>
+                      Calorie
                     </th>
                     <th scope="col" className="px-4 py-3">
                       <span className="sr-only">Edit</span>
@@ -118,10 +121,12 @@ const AdminMenu =  () => {
                         scope="row"
                         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        <Link href={`/dashboard/admin/menu/details/${item.id}`} className="font-bold capitalize hover:text-orange-500">
-                        {item.name}
+                        <Link
+                          href={`/dashboard/admin/menu/details/${item.id}`}
+                          className="font-bold capitalize hover:text-orange-500"
+                        >
+                          {item.name}
                         </Link>
-                        
                       </th>
                       <td className="px-4 py-4 hidden md:flex">
                         {item.category}
@@ -137,7 +142,6 @@ const AdminMenu =  () => {
                         {item.calorie}
                       </td>
                       <td className="px-4 py-4 text-right">
-                        
                         <Link
                           href={`/dashboard/admin/menu/edit-item/${item.id}`}
                           className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
@@ -146,10 +150,9 @@ const AdminMenu =  () => {
                         </Link>
                       </td>
                       <td className="px-4 py-4 text-right">
-                        
                         <button
                           // href={`/dashboard/admin/menu/edit-item/${item.id}`}
-                          onClick={()=>handleDelete(item.id)}
+                          onClick={() => handleDelete(item.id)}
                           className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                         >
                           Delete

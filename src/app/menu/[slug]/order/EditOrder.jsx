@@ -12,7 +12,7 @@ const EditOrder = ({ data,updateOrder }) => {
     await updateOrder(data.id,{u_id:data.u_id,f_id:data.f_id, quantity: value })
   };
   return (
-    <div className="absolute  left-52 top-12 rounded-md shadow-md dark:bg-gray-700 dark:text-gray-400 bg-gray-300 z-40 w-80">
+    <div className="absolute left-10  md:left-52 top-12 rounded-md shadow-md dark:bg-gray-700 dark:text-gray-400 bg-gray-300 z-40 w-60 md:w-80">
       <div className="my-5 px-4">
         {/* <h1 className="flex justify-end items-center"><span className="mr-4 dark:bg-white dark:text-black font-bold flex items-center justify-center p-2 cursor-pointer rounded-full" ><ImCross/></span></h1> */}
         <form onSubmit={handleSumbit} className="flex gap-4">

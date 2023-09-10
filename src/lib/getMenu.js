@@ -5,7 +5,7 @@
 
 const getMenu =async () => {
    try {
-      const res= await fetch('http://127.0.0.1:8000/api/menu/menu-list/',{ next: { revalidate: 10 } })
+      const res= await fetch('http://127.0.0.1:8000/api/menu/menuitems/',{ next: { revalidate: 10 } })
    
     
       if (!res.ok) {

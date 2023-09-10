@@ -20,7 +20,7 @@ const Order = () => {
           const data = await res.json();
           const filteredData = data.result.filter(item => item.u_id.id === parseInt(userId));
           setOrderData(filteredData);
-          const grandTotal = data.result.reduce((total, item) => total + item.totalPrice, 0);
+          const grandTotal = filteredData.reduce((total, item) => total + item.totalPrice, 0);
           setGrandTotal(grandTotal);
         }
       } catch (error) {
@@ -145,17 +145,18 @@ const Order = () => {
     
       <div className="relative">
         <div className="flex justify-between my-5 items-center w-full border-b-2 pb-3">
-          <h1 className="ml-6 text-3xl font-bold">Order your food</h1>
+          <h1 className="text-xl  ml-6 md:text-3xl font-bold">Order your food</h1>
           <button
             type="submit"
-            className="md:mr-20 mr-6 flex  items-center justify-start gap-3  rounded-lg p-0.5  bg-gradient-to-br from-orange-500 to-pink-500 "
+            className="md:mr-20 mr-6 flex  items-center justify-start  md:gap-3  rounded-lg p-0.5  bg-gradient-to-br from-orange-500 to-pink-500 "
           >
             <Link
               href={"/menu"}
-              className="flex items-center justify-center gap-3 px-3 py-2.5 dark:bg-black rounded-md bg-white"
+              className="flex items-center justify-center gap-1 md:gap-3 p-1 md:px-3 md:py-2.5 dark:bg-black rounded-md bg-white"
             >
-              <FaPlus className="" />
-              <span>Add another</span>
+              <FaPlus className="text-sm md:backdrop-sepia-0" />
+              <span className="hidden md:block">Add another</span>
+              <span className="md:hidden">More</span>
             </Link>
           </button>
         </div>
@@ -166,27 +167,27 @@ const Order = () => {
           </div>
 
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 w-fit ">
               <tr>
                
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="text-[10px] xs:text-[12px] px-1 md:px-6 py-3">
                   Food Name
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="text-[10px] xs:text-[12px] px-1 md:px-6 py-3">
                   quantity
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="text-[10px] xs:text-[12px] px-1 md:px-6 py-3">
                   Total price
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="">
                   <span className="sr-only">Edit</span>
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className=" ">
                   <span className="sr-only">Delete</span>
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="w-fit">
               {orderData.map((item) => (
                 <tr
                   key={item.id}
@@ -194,11 +195,11 @@ const Order = () => {
                 >
                   {/* <td className="px-6 py-4">{item.u_id.id}</td>
                   <td className="px-6 py-4">{item.f_id.id}</td> */}
-                  <td className="px-6 py-4">{item.f_id.name}</td>
-                  <td className="px-6 py-4">{item.quantity}</td>
-                  <td className="px-6 py-4">{item.totalPrice}</td>
-                  {/* <td className="px-6 py-4">{item.grand_total}</td> */}
-                  <td className="px-6 py-4 text-right">
+                  <td className="text-[10px] px-2 xs:text-[14px] md:px-6 py-3 capitalize">{item.f_id.name}</td>
+                  <td className="text-[10px] px-2 xs:text-[14px] md:px-6 py-3">{item.quantity}</td>
+                  <td className="text-[10px] px-2 xs:text-[14px] md:px-6 py-3">{item.totalPrice}</td>
+                  {/* <td className="text-[10px] px-2 xs:text-[14px] md:px-6 py-3">{item.grand_total}</td> */}
+                  <td className="text-[10px] px-2 xs:text-[14px] md:px-6 py-3 text-right">
                     <button
                       
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
@@ -207,7 +208,7 @@ const Order = () => {
                       Edit
                     </button>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="text-[10px] px-2 xs:text-[14px] md:px-6 py-3 text-right">
                     <button
                      
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
@@ -223,8 +224,8 @@ const Order = () => {
         </div>
 
         <div className="flex w-full justify-between items-center px-4 mt-10 ">
-          <div className="flex gap-3 items-center justify-center bg-slate-200 dark:bg-slate-700  p-3">
-            <h1 className=""> GrandTotal price</h1>
+          <div className="flex gap-3 items-center justify-center flex-col md:flex-row bg-slate-200 dark:bg-slate-700  p-3">
+            <h1 className="text-sm xs:text-base"> GrandTotal price</h1>
             <p className="text-blue-500"><span>Rs</span> {GrandTotal}</p>
           </div>
           <button
@@ -236,8 +237,8 @@ const Order = () => {
               href={"/dashboard/user/myorder"}
               className="flex items-center justify-center gap-3 px-3 py-2.5 dark:bg-black rounded-md bg-white"
             >
-              <FaPlus className="" />
-              <span>Order Now</span>
+              <FaPlus className="text-sm xs:text-base hidden xs:flex" />
+              <p className="md:flex gap-2">Order <span className="hidden md:block">Now</span></p>
             </Link>
           </button>
         </div>

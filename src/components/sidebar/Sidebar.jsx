@@ -7,14 +7,14 @@ import { ImLeaf } from "react-icons/im";
 import Link from "next/link";
 
 const Sidebar = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
 
   return (
     <>
       <div
         className={`${
-          toggle ? "w-[250px]" : "w-20"
-        } bg-white dark:bg-black border-r border-opacity-70  min-h-screen flex flex-col px-2 py-5 `}
+          toggle ? "md:w-[250px] absolute left-0 md:relative" : " md:w-20"
+        } bg-white dark:bg-black border-r border-opacity-70  min-h-screen flex flex-col md:px-2 py-5 `}
       >
         <div className="w-full flex justify-center items-center ">
           <div className="flex justify-between items-center w-full text-black">

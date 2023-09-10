@@ -26,24 +26,29 @@ const Order = () => {
 
   return (
     <>
-      <div>
-        <h1>my Orders</h1>
+    <div className="lg:w-4/5 mx-auto">
+
+      <div className="w-full flex justify-start items-center py-5">
+        <h1 className="ml-4 text-4xl ">My Orders</h1>
       </div>
       <div>
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
               <tr>
                
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="text-[10px] xs:text-[12px] px-1 md:px-6 py-3">
                   Food Name
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="text-[10px] xs:text-[12px] px-1 md:px-6 py-3">
                   quantity
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="text-[10px] xs:text-[12px] px-1 md:px-6 py-3 md:hidden">
+                   Price
+                </th>
+                <th scope="col" className="hidden md:flex text-[10px] xs:text-[12px] px-1 md:px-6 py-3">
                   Total price
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="text-[10px] xs:text-[12px] px-1 md:px-6 py-3">
                   Completed
                 </th>
                
@@ -57,10 +62,10 @@ const Order = () => {
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
                 
-                  <td className="px-6 py-4">{item.menu_item.name}</td>
-                  <td className="px-6 py-4">{item.quantity}</td>
-                  <td className="px-6 py-4">{item.totalPrice}</td>
-                  <td className="px-6 py-4">
+                  <td className="text-[10px] px-2 xs:text-[14px] md:px-6 py-3 capitalize">{item.menu_item.name}</td>
+                  <td className="text-[10px] px-2 xs:text-[14px] md:px-6 py-3">{item.quantity}</td>
+                  <td className="text-[10px] px-2 xs:text-[14px] md:px-6 py-3">{item.totalPrice}</td>
+                  <td className="text-[10px] px-2 xs:text-[14px] md:px-6 py-3">
                     {
                       item?.completed?"yes":"no"
                     }
@@ -72,6 +77,8 @@ const Order = () => {
             </tbody>
           </table>
       </div>
+    </div>
+
     </>
   );
 };

@@ -22,8 +22,8 @@ const DashNav = () => {
   return (
     <div
       className={`${
-        toggle ? "w-32  xs:w-40  md:w-52 absolute left-0 z-20 bg-slate-800 md:bg-transparent md:relative" : "w-16 md:w-52"
-      }   border-r min-h-screen `}
+        toggle ? "w-32  xs:w-40  md:w-52 absolute left-0 z-20 bg-slate-700 md:bg-transparent md:relative" : "w-16 md:w-52 "
+      }   border-r h-screen `}
     >
       <div className="w-full my-2 border-b px-4 flex items-center justify-center gap-2">
         
@@ -33,7 +33,7 @@ const DashNav = () => {
             toggle ? "flex" : "hidden"
           }  items-center py-2 text-xl font-semibold text-gray-900 dark:text-white md:hidden `}
         >
-          <span className="self-center  font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center  font-semibold whitespace-nowrap text-white">
             B<span className="text-orange-500">D.</span>
           </span>
           <ImLeaf className="text-green-500" />
@@ -51,7 +51,7 @@ const DashNav = () => {
           {toggle ? (
             <ImArrowLeft2
               onClick={() => setToggle((prev) => !prev)}
-              className="w-8 mx-auto md:hidden "
+              className="w-8 mx-auto md:hidden text-white "
             />
           ) : (
             <ImArrowRight2
