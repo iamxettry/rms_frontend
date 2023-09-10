@@ -5,7 +5,7 @@ import {  FaPlus } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 
 const EditOrder = ({ data,updateOrder }) => {
-  const initialValue = data.quantity || 0; 
+  const initialValue = data.quantity || 1; 
   const [value, setValue] = useState(initialValue);
   const handleSumbit = async (e) => {
     e.preventDefault();

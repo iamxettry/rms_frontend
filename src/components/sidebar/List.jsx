@@ -40,7 +40,7 @@ const List = ({ toggle }) => {
            
           return (
             <li
-              className={`${isActive?"bg-green-200 dark:bg-white  text-black dark:hover:text-white ":"dark:text-white"} group text-black  hover:bg-green-200 dark:hover:bg-slate-800 hover:text-black rounded-xl   relative`}
+              className={`${isActive?"bg-green-200 dark:bg-white  text-black dark:hover:text-white ":"dark:text-white"} group text-black  hover:bg-green-200 dark:hover:bg-slate-800 hover:text-black rounded-xl my-2  relative`}
               key={item.id}
             >
               <Link

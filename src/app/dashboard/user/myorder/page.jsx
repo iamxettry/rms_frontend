@@ -1,5 +1,6 @@
 'use client'
 import getOrderList from "@/lib/getOrderList";
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 
 const Order = () => {
@@ -9,8 +10,12 @@ const Order = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const userId = Cookies.get('userId');
         const orderData = await getOrderList();
-        setOrder(orderData.result);
+        // console.log('all data',orderData);
+        const filteredData = orderData.result.filter(item => item.account.id === parseInt(userId));
+        // console.log('filtered data',filteredData);
+        setOrder(filteredData);
       } catch (error) {
         console.error("Error fetching order data:", error);
       }
@@ -18,7 +23,6 @@ const Order = () => {
 
     fetchData();
   }, []);
-  console.log(order);
 
   return (
     <>

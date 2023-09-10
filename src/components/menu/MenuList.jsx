@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 const MenuList =  () => {
   // const [favourite, setfavourite] = useState(false);
   const [menuData, setMenuData] = useState([])
+  console.log(menuData);
   useEffect(()=>{
     const fetchData= async()=>{
 

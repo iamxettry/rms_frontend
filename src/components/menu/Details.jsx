@@ -13,7 +13,7 @@ const Details = async ({ id }) => {
         <Link href={"/dashboard/admin/menu"}>
           <ImArrowLeft2 />
         </Link>
-        <h1 className="font-bold">Datails</h1>
+        <h1 className="font-bold">Details</h1>
       </div>
       <div className="flex flex-col items-center gap-4 md:flex-row ">
         <Image

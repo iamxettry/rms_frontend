@@ -115,6 +115,21 @@ const Order = () => {
         const data= await res.json()
         toast.success(data.msg)
         console.log("successful",data.msg );
+        // Clear the cart after successfully placing the order
+      const clearCartResponse = await fetch(`http://127.0.0.1:8000/api/order/cart/`, {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+
+      if (clearCartResponse.ok) {
+        console.log("Cart cleared successfully");
+        // You can optionally update your UI to reflect that the cart is empty.
+      } else {
+        console.log("Failed to clear cart");
+        // Handle the error appropriately, e.g., show an error message.
+      }
        }else{
         const data= await res.json()
         console.log(data);
@@ -130,16 +145,16 @@ const Order = () => {
     
       <div className="relative">
         <div className="flex justify-between my-5 items-center w-full border-b-2 pb-3">
-          <h1>Order your food</h1>
+          <h1 className="ml-6 text-3xl font-bold">Order your food</h1>
           <button
             type="submit"
-            className="md:mr-20 mr-6 flex  items-center justify-start gap-3  rounded-md py-2 px-3 border-2"
+            className="md:mr-20 mr-6 flex  items-center justify-start gap-3  rounded-lg p-0.5  bg-gradient-to-br from-orange-500 to-pink-500 "
           >
             <Link
               href={"/menu"}
-              className="flex items-center justify-center gap-3"
+              className="flex items-center justify-center gap-3 px-3 py-2.5 dark:bg-black rounded-md bg-white"
             >
-              <FaPlus />
+              <FaPlus className="" />
               <span>Add another</span>
             </Link>
           </button>
@@ -208,20 +223,20 @@ const Order = () => {
         </div>
 
         <div className="flex w-full justify-between items-center px-4 mt-10 ">
-          <div className="flex gap-3 items-center justify-center bg-slate-700 p-3">
+          <div className="flex gap-3 items-center justify-center bg-slate-200 dark:bg-slate-700  p-3">
             <h1 className=""> GrandTotal price</h1>
             <p className="text-blue-500"><span>Rs</span> {GrandTotal}</p>
           </div>
           <button
-            
-            className="md:mr-20 mr-6 flex  items-center justify-start gap-3  rounded-md py-2 px-3 border-2"
+            type="submit"
+            className="md:mr-20 mr-6 flex  items-center justify-start gap-3  rounded-lg p-0.5  bg-gradient-to-br from-orange-500 to-pink-500 "
             onClick={orderNow}
           >
             <Link
               href={"/dashboard/user/myorder"}
-              className="flex items-center justify-center gap-3"
+              className="flex items-center justify-center gap-3 px-3 py-2.5 dark:bg-black rounded-md bg-white"
             >
-              <FaPlus />
+              <FaPlus className="" />
               <span>Order Now</span>
             </Link>
           </button>

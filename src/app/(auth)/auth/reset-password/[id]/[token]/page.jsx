@@ -30,6 +30,7 @@ const ResetPassword = ({params}) => {
  
   useEffect(() => {
     const result = PWD_REGEX.test(newPassword);
+    console.log(result);
     setValidPwd(result);
     const match = newPassword === confPassword;
     setValidMatch(match);
@@ -38,8 +39,9 @@ const ResetPassword = ({params}) => {
     e.preventDefault();
 
     // if button is somehow enable
-    const v1 = PWD_REGEX.test(password);
-    if ( !v1) {
+    const v1 = PWD_REGEX.test(newPassword);
+    console.log(v1);
+    if (!v1) {
       toast.error("Invalid Entry!")
       return;
     }
