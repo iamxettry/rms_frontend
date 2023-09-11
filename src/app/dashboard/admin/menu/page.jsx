@@ -87,7 +87,7 @@ const AdminMenu = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3 hidden  items-center"
+                      className="px-4 py-3   items-center"
                     >
                       Category
                     </th>

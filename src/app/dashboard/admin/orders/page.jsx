@@ -1,12 +1,15 @@
 "use client";
 import getOrderList from "@/lib/getOrderList";
+import { setUser } from "@/redux/features/authSlice";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { ImCheckmark, ImCross } from "react-icons/im";
+import { useDispatch } from "react-redux";
 
 const Orders =  () => {
   const [order, setOrder] = useState(null);
-
+  const dispatch= useDispatch()
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,41 +44,6 @@ const Orders =  () => {
     return `${hour}:${minute}`;
   };
  
-// Handle the checkbox 
-const handleCheckboxChange = async (userId) => {
-  // Send PUT request to update completed status to true
-  console.log(userId);
-  try {
-    const res = await fetch(
-      `http://127.0.0.1:8000/api/order/orders/${userId}/`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({completed: true }), // Set completed to true
-      }
-    );
-  
-    if (res.ok) {
-      // If the PUT request is successful, update the local state (order.completed)
-      setOrder((prevOrder) => ({
-        ...prevOrder,
-        result: prevOrder.result.map((orderItem) =>
-          orderItem.account.id === userId
-            ? { ...orderItem, completed: true }
-            : orderItem
-        ),
-      }));
-    }else{
-      const err= await res.json()
-      console.log(err);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
   return (
     <>
       <main className="flex flex-wrap px-2">
@@ -88,14 +56,14 @@ const handleCheckboxChange = async (userId) => {
                   <th scope="col" className="px-4 py-3 ">
                       User
                     </th>
-                    <th scope="col" className="px-4 py-3">
+                    <th scope="col" className="px-4 py-3 text-center">
                       Order_Date
                     </th>
-                    <th scope="col" className="px-4 py-3">
+                    <th scope="col" className="px-4 py-3 text-center">
                       Completed
                     </th>
 
-                    <th scope="col" className="px-4 py-3 ">
+                    <th scope="col" className="px-4 py-3 text-center ">
                       <span className="sr-only">Edit</span>
                     </th>
                   </tr>
@@ -108,7 +76,7 @@ const handleCheckboxChange = async (userId) => {
                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                   >
                     {index === 0 ? (
-                      <td scope="row" rowSpan={ordersByUser[userId].length} className="px-4 py-3 capitalize">
+                      <td scope="row" rowSpan={ordersByUser[userId].length} className="px-4 py-3 capitalize ">
                         <Link
                         href={`/dashboard/admin/orders/${order.account.id}`}
                         className={"font-bold hover:underline"}
@@ -128,35 +96,26 @@ const handleCheckboxChange = async (userId) => {
                     {index === 0 ? (
                       <td scope="row" rowSpan={ordersByUser[userId].length} className="px-4 py-3 flex justify-center items-center ">
                         {
-                          order.completed?<ImCheckmark className="text-green-500"/>:<ImCross className="text-red-600"/>
+                          ordersByUser[userId].every((order) => order.completed) ? (
+                            <ImCheckmark className="text-green-500" />
+                          ):<ImCross className="text-red-600"/>
                         }
                       </td>
                     ) : null}
-                    {index === 0 && !order.completed ? (
-                      <td className="px-4 py-4 ">
-                       <label htmlFor={`completed-${order.id}`}>
-                            <input
-                              type="checkbox"
-                              id={`completed-${order.id}`}
-                              name={`completed-${order.id}`}
-                                onChange={(e) =>
-                                handleCheckboxChange(order.account.id)
-                              }
-                              
-                              checked={order.completed}
-                            />
-                           
-                          </label>
-                    </td>
-                    ) : null}
+                   
                     {index === 0 ? (
                       <td className="px-4 py-4 ">
-                      <Link
-                        href={`/dashboard/admin/orders/${order.account.id}`}
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                      >
-                        View
-                      </Link>
+                          <Link
+                          href={`/dashboard/admin/orders/${order.account.id}`}
+                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                          // onClick={()=>dispatch(setUser(order.account.username))}
+                          onClick={()=>Cookies.set('user',order.account.username)}
+                        >
+                          View
+                        </Link>
+                      
+                        
+                      
                     </td>
                     ) : null}
                     

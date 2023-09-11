@@ -3,7 +3,7 @@ import { getToken, removeToken } from "@/redux/features/localStorage";
 import { useGetLoggedUserQuery } from "@/redux/services/users/userApi";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { profile1 } from "../../public/assets";
 import { useRouter } from "next/navigation";
@@ -29,8 +29,8 @@ const DropDown = ({ toggle, setToggle }) => {
     
   };
   
+ 
   const { data } = useGetLoggedUserQuery(accessToken);
-  const userId=data?.id
  
   return (
     <>

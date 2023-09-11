@@ -1,13 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLoginUserMutation } from "@/redux/services/users/userApi";
 import Link from "next/link";
-import { getToken, storeToken } from "@/redux/features/localStorage";
 import Logo from "@/utils/Logo";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+import { selectUser } from "@/redux/features/authSlice";
 
 export default function Login() {
   const userRef = useRef();
@@ -16,6 +16,8 @@ export default function Login() {
   const [password, setPwd] = useState("");
 
   const [errorMsg, setErrMsg] = useState("");
+
+  let user = useSelector(selectUser);
 
   const dispatch = useDispatch();
   const [login, { isLoading, isError }] = useLoginUserMutation();
@@ -32,6 +34,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const userData = await login({ email, password });
+      
       if (userData.data) {
         // storeToken(userData.data.token);//currently not using localstorage
         // save the access token and refresh token in cookies
@@ -41,7 +44,6 @@ export default function Login() {
         Cookies.set("refresh_token", refresh, { expires: 30 });
         Cookies.set("superuser", userData.data.superUser,{ expires: 10 });
         Cookies.set("userId",userData.data.user_id,{ expires: 10 })
-
         setEmail("");
         setPwd("");
         if (userData.data.superUser) {
