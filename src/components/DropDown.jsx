@@ -20,7 +20,6 @@ const DropDown = ({ toggle, setToggle }) => {
     Cookies.remove("loggedin")
     Cookies.remove("access_token")
     Cookies.remove("refresh_token")
-    Cookies.remove("superuser")
     Cookies.remove("userId")
     Cookies.remove("count")
     setTogglePorfile(!togglePorfile);

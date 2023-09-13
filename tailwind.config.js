@@ -17,6 +17,7 @@ module.exports = {
         'hero-11': "url('/assets/images/carousel-img/hero11-removebg.png')",
         'hero-12': "url('/assets/images/carousel-img/hero12-removedbg.png')",
         'hero-13': "url('/assets/images/carousel-img/hero13.jpg')",
+        'hero-14': "url('/assets/images/bgimage/fries-bg-removed.png')",
         'drinks-1': "url('/assets/images/carousel-img/drinks1-removebg.png')",
       },
       

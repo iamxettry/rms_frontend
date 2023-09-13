@@ -4,7 +4,8 @@ import { NextResponse } from "next/server";
 export function middleware(request) {
   let verify = request.cookies.has("loggedin");
   let { url } = request;
-  let super_user=request.cookies.get('superuser')
+  let { value } = request?.cookies.get("superuser");
+
   if (!verify && url.includes("/dashboard")) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
@@ -12,23 +13,16 @@ export function middleware(request) {
   if (verify && url.includes("/auth")) {
     return NextResponse.redirect(new URL("/", request.url));
   }
-  // if (verify && super_user.value && url.includes("/dashboard")) {
-  //   return NextResponse.redirect(new URL("/dashboard/admin", request.url));
-  // }
-  // if (
-  //   verify &&
-  //   super_user &&
-  //   (url.includes("/dashboard") || url.includes("/dashboard/user"))
-  // ) {
-  //   return NextResponse.redirect(new URL("/dashboard/admin", request.url));
-  // }
-  // if (
-  //   verify &&
-  //   !super_user &&
-  //   (url.includes("/dashboard") || url.includes("/dashboard/admin"))
-  // ) {
-  //   return NextResponse.redirect(new URL("/dashboard/user", request.url));
-  // }
+  // If the user is a superuser, prevent access to the user profile
+  if (value && url.includes("/dashboard/user")) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // // If the user is not a superuser, prevent access to the admin page
+  if (!value && url.includes("/dashboard/admin")) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+  
 }
 
 // See "Matching Paths" below to learn more
