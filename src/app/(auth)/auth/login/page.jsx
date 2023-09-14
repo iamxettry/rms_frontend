@@ -42,13 +42,15 @@ export default function Login() {
         const { access, refresh } = userData.data.token;
         Cookies.set("access_token", access, { expires: 10 });
         Cookies.set("refresh_token", refresh, { expires: 30 });
-        Cookies.set("superuser", userData.data.superUser,{ expires: 10 });
         Cookies.set("userId",userData.data.user_id,{ expires: 10 })
         setEmail("");
         setPwd("");
         if (userData.data.superUser) {
+          Cookies.set("superuser",true,{expires:10})
           router.push("/dashboard/admin");
         } else {
+          Cookies.set("user",true,{expires:10})
+
           router.push("/");
         }
         toast.success("Login Successfully.");
@@ -134,7 +136,7 @@ export default function Login() {
                   Don’t have an account yet?{" "}
                   <Link
                     href="/auth/signup"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="font-medium text-black hover:underline dark:text-white "
                   >
                     Sign up
                   </Link>

@@ -22,6 +22,8 @@ const DropDown = ({ toggle, setToggle }) => {
     Cookies.remove("refresh_token")
     Cookies.remove("userId")
     Cookies.remove("count")
+    Cookies.remove("user")
+    Cookies.remove("superuser")
     setTogglePorfile(!togglePorfile);
     router.push('/')
     toast.success("Logout successful!")

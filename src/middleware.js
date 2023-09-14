@@ -4,7 +4,9 @@ import { NextResponse } from "next/server";
 export function middleware(request) {
   let verify = request.cookies.has("loggedin");
   let { url } = request;
-  let { value } = request?.cookies.get("superuser");
+  let superuser= request?.cookies.has("superuser");
+  let user = request?.cookies.has("user");
+
 
   if (!verify && url.includes("/dashboard")) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
@@ -13,16 +15,14 @@ export function middleware(request) {
   if (verify && url.includes("/auth")) {
     return NextResponse.redirect(new URL("/", request.url));
   }
-  // If the user is a superuser, prevent access to the user profile
-  if (value && url.includes("/dashboard/user")) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
 
-  // // If the user is not a superuser, prevent access to the admin page
-  if (!value && url.includes("/dashboard/admin")) {
+  if (superuser && url.includes("/dashboard/user")) {
     return NextResponse.redirect(new URL("/", request.url));
   }
-  
+ 
+  if (user && url.includes("/dashboard/admin")) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 }
 
 // See "Matching Paths" below to learn more

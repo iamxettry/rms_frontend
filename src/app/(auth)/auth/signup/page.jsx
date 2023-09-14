@@ -342,7 +342,7 @@ const Signup = () => {
                   Already have an account?{" "}
                   <Link
                     href="/auth/login"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="font-medium dark:text-white text-black hover:underline "
                   >
                     Login here
                   </Link>

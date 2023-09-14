@@ -38,7 +38,7 @@ const OrderDetails = ({ params }) => {
     };
 
     fetchData();
-  }, []);
+  }, [id]);
   // console.log(user,date.datePart);
 
   const handleCheckboxChange = async (itemId) => {

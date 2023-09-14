@@ -1,52 +1,60 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 // import React, { useState } from "react";
 import { FaPlus, FaHeart } from "react-icons/fa";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import MenuNav from "@/components/menu/MenuNav";
 import { ImArrowLeft2 } from "react-icons/im";
 import getVegNonVeg from "@/lib/getVegNonVeg";
-const MenuList =  () => {
+const MenuList = () => {
   // const [favourite, setfavourite] = useState(false);
-  const [menuData, setMenuData] = useState([])
- 
-  useEffect(()=>{
-    const fetchData= async()=>{
+  const [menuData, setMenuData] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
       const data = await getVegNonVeg(1);
-      
-      setMenuData(data.result)
-    }
-    fetchData()
-  },[])
-  
+
+      setMenuData(data.result);
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
-      {/* menu nav category */}
-      <div className="my-3">
-        <MenuNav />
-      </div>
+   
       {/* menu list */}
-     
+
       <div className="my-3">
-      <div className="px-4 w-full py-1 bg-slate-200 rounded-md flex justify-between items-center ">
-        <Link
+        <div className="px-4 w-full py-1 bg-white dark:bg-slate-800 dark: dark:bg-opacity-50 rounded-md flex justify-between items-center ">
+          <Link
             href={"/menu"}
             className="flex gap-2 items-center py-2 my-2 cursor-pointer"
           >
             <ImArrowLeft2 />
             <h1 className="font-bold ">Back</h1>
           </Link>
-          <h1 className="font-bold text-orange-500">Veg Menu List</h1>
-          <Link href={'/menu/veg'} className="hover:text-orange-500 font-bold">Veg items</Link> 
-          <Link href={'/menu/all-items'} className="hover:text-orange-500 font-bold">View All items</Link>
+          <h1 className="font-bold text-orange-500">Veg Menu </h1>
+          <Link
+            href={"/menu/non-veg"}
+            className="hover:text-orange-500 font-bold"
+          >
+            Non-Veg Menu 
+          </Link>
+          <Link
+            href={"/menu/all-items"}
+            className="hover:text-orange-500 font-bold"
+          >
+            View All Menu
+          </Link>
         </div>
         <div className="grid grid-cols-2 rounded-lg md:grid-cols-3 lg:grid-cols-4">
           {/* map the items */}
           {menuData?.map((item) => (
-            <div className="flex flex-col items-center  bg-slate-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white  " key={item.id}>
+            <div
+              className="flex flex-col items-center  bg-white m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white shadow-lg dark:shadow-sm shadow-slate-500 dark:shadow-yellow-50   "
+              key={item.id}
+            >
               {/* {
                 // later change based through database
                 favourite ? (

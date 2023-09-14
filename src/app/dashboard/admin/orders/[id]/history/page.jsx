@@ -33,7 +33,7 @@ const History = ({params}) => {
               }
         }
         fetchData()
-    },[])
+    },[id])
   return (
     <main>
         <div>

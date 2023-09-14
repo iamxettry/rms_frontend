@@ -37,8 +37,8 @@ const page =async ({ params }) => {
               <Image
                 src={data.img}
                 priority
-                height={100}
-                width={100}
+                height={300}
+                width={400}
                 className="z-20 relative   w-[250px] h-[250px] xs:h-auto  xs:w-[350px] md:w-[200px] lg:w-[250px] rounded-md"
                 alt="salad"
               />

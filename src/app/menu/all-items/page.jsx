@@ -6,17 +6,18 @@ import Image from "next/image";
 import { FaPlus, FaHeart } from "react-icons/fa";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import MenuNav from "@/components/menu/MenuNav";
 import { ImArrowLeft2 } from "react-icons/im";
 const MenuList = () => {
   // const [favourite, setfavourite] = useState(false);
   const [menuData, setMenuData] = useState([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getMenu();
 
       setMenuData(data);
+  
     };
     fetchData();
   }, [menuData]);
@@ -24,13 +25,11 @@ const MenuList = () => {
   return (
     <>
       {/* menu nav category */}
-      <div className="my-3">
-        <MenuNav />
-      </div>
+
       {/* menu list */}
 
       <div className="my-3">
-        <div className="px-4 w-full py-1 bg-slate-200 rounded-md flex justify-between items-center ">
+        <div className="px-4 w-full py-1  bg-white dark:bg-slate-800 dark:bg-opacity-50  rounded-md flex justify-between items-center ">
           <Link
             href={"/menu"}
             className="flex gap-2 items-center py-2 my-2 cursor-pointer"
@@ -38,19 +37,23 @@ const MenuList = () => {
             <ImArrowLeft2 />
             <h1 className="font-bold ">Back</h1>
           </Link>
-          <h1 className="font-bold text-orange-500">All Menu List</h1>
           <Link href={"/menu/veg"} className="hover:text-orange-500 font-bold">
-            Veg items
+            Veg Menu
           </Link>
-          <Link href={"/menu/non-veg"} className="hover:text-orange-500 font-bold">
-            Non-veg All items
+          <Link
+            href={"/menu/non-veg"}
+            className="hover:text-orange-500 font-bold"
+          >
+            Non-veg Menu
           </Link>
+          <h1 className="font-bold text-orange-500">View All Menu </h1>
+
         </div>
         <div className="grid grid-cols-2 rounded-lg md:grid-cols-3 lg:grid-cols-4">
           {/* map the items */}
           {menuData?.map((item) => (
             <div
-              className="flex flex-col items-center  bg-slate-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white  "
+              className="flex flex-col items-center  bg-white m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white shadow-lg dark:shadow-sm shadow-slate-500 dark:shadow-yellow-50   "
               key={item.id}
             >
               {/* {

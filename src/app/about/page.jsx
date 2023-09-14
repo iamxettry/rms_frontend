@@ -26,7 +26,7 @@ const About = () => {
           <DashLineRight />
         </div>
         <div className="mt-32">
-          <h1 className="uppercase md:text-6xl text-2xl">Let's conntect with us</h1>
+          <h1 className="uppercase md:text-6xl text-2xl">Let&apos;s conntect with us</h1>
           <form action="" className="md:w-4/5 mx-auto  flex gap-5 items-center my-5">
             <div className="">
             <input type="email" name="email" id="email" placeholder="Enter your email" className="rounded-full   border-2 border-black/50 dark:border-white py-2 w-48 md:py-4 md:px-6 px-2 "/>
