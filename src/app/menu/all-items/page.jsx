@@ -20,7 +20,7 @@ const MenuList = () => {
   
     };
     fetchData();
-  }, [menuData]);
+  }, []);
 
   return (
     <>

@@ -9,7 +9,6 @@ import getCategoryList from "@/lib/getCategory";
 const MenuList = () => {
   // const [favourite, setfavourite] = useState(false);
   const [category, setCategory] = useState([]);
-  console.log(category);
   useEffect(() => {
     const fetchData = async () => {
       const data = await getCategoryList();
@@ -17,7 +16,7 @@ const MenuList = () => {
       setCategory(data.result);
     };
     fetchData();
-  }, []);
+  }, [setCategory]);
 
   return (
     <>
@@ -54,7 +53,7 @@ const MenuList = () => {
         {category.map((items) => (
           <div className="my-3" id={items.category} key={`#${items.category}`}>
             <div className="px-4 w-full py-1 bg-white dark:bg-slate-800 dark:bg-opacity-50 rounded-md">
-              <h1 className="font-bold capitalize">{items.category}</h1>
+              <h1 className="font-bold capitalize text-2xl">{items.category}</h1>
             </div>
             <div className="grid grid-cols-2 rounded-lg md:grid-cols-3 lg:grid-cols-4">
               {/* map the items */}
@@ -79,16 +78,16 @@ const MenuList = () => {
              } */}
                   <Link
                     href={`/menu/${item.id}`}
-                    className="w-full flex flex-col items-center"
+                    className="w-full flex flex-col justify-around items-center "
                   >
                     {/* <BackLight style=" h-20 w-20 top-12 left-10 blur-[50px]  bg-gradient-to-r from-green-500 to-white" /> */}
 
                     <Image
                       src={item.img}
                       priority
-                      height={200}
+                      height={300}
                       width={300}
-                      className=" rounded-lg"
+                      className=" rounded-lg  "
                       alt="salad"
                     />
                     <h1 className="capitalize text-start w-full text-black text-opacity-80  text-lg my-2 dark:text-white">

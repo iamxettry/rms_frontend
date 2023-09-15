@@ -5,6 +5,7 @@ import { TbDiscount2 } from "react-icons/tb";
 import DashLineRight from "./dashedlined/DashLineRight";
 import DashLineMiddle from "./dashedlined/DashLineMiddle";
 import DashLineLeft from "./dashedlined/DashLineLeft";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -17,11 +18,11 @@ const Hero = () => {
               it&apos;s not just Food,It&apos;s an Experience.
             </h1>
             <div className="w-full flex justify-start items-center">
-              <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-orange-500 to-pink-500 group-hover:from-orange-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-orange-800">
+              <Link href={'/menu'} className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-orange-500 to-pink-500 group-hover:from-orange-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-orange-800">
                 <span className="relative px-5 py-2.5  bg-white dark:bg-black rounded-md group-hover:bg-opacity-0">
                   <Btn title="View Menu" path="/menu" available={true} />
                 </span>
-              </button>
+              </Link>
               {/* Book table */}
               {/* <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-orange-500 to-pink-500 group-hover:from-orange-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-orange-800">
                 <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">

@@ -22,7 +22,7 @@ const DashNav = () => {
   return (
     <div
       className={`${
-        toggle ? "w-32  xs:w-40  md:w-52 absolute left-0 z-20 bg-slate-700 md:bg-transparent md:relative" : "w-16 md:w-52 "
+        toggle ? "w-32  xs:w-40  md:w-52 absolute  z-20 bg-slate-700 md:bg-transparent md:relative" : "w-16 md:w-52 ml-2 "
       }   border-r h-screen `}
     >
       <div className="w-full my-2 border-b px-4 flex items-center justify-center gap-2">
@@ -38,7 +38,7 @@ const DashNav = () => {
           </span>
           <ImLeaf className="text-green-500" />
         </Link>
-        <div className="hidden md:block">
+        <div className="hidden md:block  ml-8">
         <Logo/>
         </div>
           

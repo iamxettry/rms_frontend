@@ -1,6 +1,7 @@
 import { Btn } from "@/utils/Btn";
 import { CardInfo } from "@/constant";
 import BackLight from "./backLight/Backlight";
+import Link from "next/link";
 
 const InfoCard = () => {
   return (
@@ -25,11 +26,11 @@ const InfoCard = () => {
                 {desc.d3}
               </p>
               <div className="w-full flex justify-center items-center">
-                <button type="button" disabled className={`${available?"":" cursor-not-allowed disabled:bg-opacity-20"} relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-orange-500 to-pink-500 group-hover:from-orange-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-orange-800`}>
+                <Link href={path} type="button" disabled className={`${available?"":" cursor-not-allowed disabled:bg-opacity-20"} relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-orange-500 to-pink-500 group-hover:from-orange-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-orange-800`}>
                   <span className="relative px-5 py-2.5  bg-white dark:bg-black rounded-md group-hover:bg-opacity-0">
-                    <Btn title={btn} path={path} available={available} />
+                    <Btn title={btn} available={available} />
                   </span>
-                </button>
+                </Link>
               </div>
               <div className={`absolute ${available?"hidden":"bottom-12 right-0 border  rounded-md bg-orange-500 font-bold px-4 dark:border-white"}`}>
 

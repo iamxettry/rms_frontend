@@ -59,7 +59,6 @@ const Order = () => {
       if (res.ok) {
         // Handle the success case (e.g., update the UI)
         const data= await res.json()
-        console.log(data);
         setToggle(false)
         toast.success('Updated Successfully')
       } else {

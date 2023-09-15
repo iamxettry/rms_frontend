@@ -17,10 +17,11 @@ const EditItem = ({ params }) => {
     category: "",
     price: "",
     itemtype: "",
-    img: '',
+    img: "",
     available: "",
     calorie: "",
   });
+  console.log(data);
   useEffect(() => {
     // Fetch data using a GET request with the provided itemId
     const fetchData = async () => {
@@ -50,7 +51,6 @@ const EditItem = ({ params }) => {
       ...data,
       [name]: value,
     });
-
   };
   const handleFileInputChange = (event) => {
     const { name, files } = event.target;
@@ -67,7 +67,9 @@ const EditItem = ({ params }) => {
       const formData = new FormData();
       // Append all form data including the file to FormData
       for (const key in data) {
-        formData.append(key, data[key]);
+        if (key !== 'img') {
+          formData.append(key, data[key]);
+        }
       }
       const res = await fetch(
         `http://127.0.0.1:8000/api/menu/menu-list/${id}/`,
@@ -84,6 +86,8 @@ const EditItem = ({ params }) => {
         router.push("/dashboard/admin/menu");
       } else {
         // Handle non-200 responses here
+        const newData = await res.json();
+        console.log(newData);
         toast.error(res.statusText);
       }
     } catch (error) {
@@ -104,7 +108,7 @@ const EditItem = ({ params }) => {
 
         <div className="md:flex justify-between items-center gap-4 dark:text-white">
           <form
-          encType="multipart/form-data"
+            encType="multipart/form-data"
             action=""
             className="   rounded-md flex-1 flex flex-col justify-center items-start "
             onSubmit={handleSumbit}
@@ -150,21 +154,30 @@ const EditItem = ({ params }) => {
                 <input
                   type="radio"
                   name="itemtype"
-                  className="ml-5 md:ml-14"
-                  value={data.itemtype}
-                  checked={data.itemtype}
+                  className="ml-2 md:ml-8"
+                  value="VEG"
+                  checked={data.itemtype === "VEG"}
                   onChange={handleInputChange}
                 />
                 <span>veg</span>
                 <input
                   type="radio"
                   name="itemtype"
-                  className="ml-4 md:ml-14"
-                  value={data.itemtype}
-                  checked={!data.itemtype}
+                  className="ml-2 md:ml-8"
+                  value="NON_VEG"
+                  checked={data.itemtype === "NON_VEG"}
                   onChange={handleInputChange}
                 />
                 <span>non veg</span>
+                <input
+                  type="radio"
+                  name="itemtype"
+                  className="ml-2 md:ml-8"
+                  value="NONE"
+                  checked={data.itemtype === "NONE"}
+                  onChange={handleInputChange}
+                />
+                <span>none</span>
               </p>
             </div>
             <div className="flex text-black/80 dark:text-white/80 dark:border-white/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-between items-center">

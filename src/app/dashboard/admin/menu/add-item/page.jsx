@@ -22,17 +22,15 @@ const AddItem = () => {
       });
 
       if (res.ok) {
-        const data=await res.json()
+        const data = await res.json();
         // Handle successful response here
-        toast.success(data.message)
-        router.push("/dashboard/admin/menu")
+        toast.success(data.message);
+        router.push("/dashboard/admin/menu");
       } else {
         // Handle non-200 responses here
-        toast.error(res.statusText)
-        toast.error("Check the fields!")
-       
+        toast.error(res.statusText);
+        toast.error("Check the fields!");
       }
-    
     } catch (error) {
       toast.error("Network Error", error);
     }
@@ -87,10 +85,27 @@ const AddItem = () => {
             <div className="flex text-black/80 dark:text-white/80 dark:border-white/80  my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-start items-center gap-5">
               <p className="flex items-center gap-2">
                 <label htmlFor="itemtype">Item type</label>
-                <input type="radio" name="itemtype" className="ml-5 md:ml-14" value={true} />
+                <input
+                  type="radio"
+                  name="itemtype"
+                  className="ml-5 md:ml-14"
+                  value={"VEG"}
+                />
                 <span>veg</span>
-                <input type="radio" name="itemtype" className="ml-4 md:ml-14" value={false} />
+                <input
+                  type="radio"
+                  name="itemtype"
+                  className="ml-4 md:ml-14"
+                  value={"NON_VEG"}
+                />
                 <span>non veg</span>
+                <input
+                  type="radio"
+                  name="itemtype"
+                  className="ml-4 md:ml-14"
+                  value="NONE"
+                />
+                <span>none</span>
               </p>
             </div>
             <div className="flex  text-black/80 dark:text-white/80 dark:border-white/80 gap-2 my-3 border-b-2 w-full border-black border-opacity-50 pb-2 pl-2 justify-between items-center">

@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import { useSelector } from "react-redux";
 import { selectCurrentMode } from "@/redux/features/darkModeSlice";
 import { ToastContainer } from "react-toastify";
-import { footerLinks } from "@/constant";
 import Logo from "@/utils/Logo";
 const MyApp = ({ children }) => {
   const mode = useSelector(selectCurrentMode);
@@ -11,12 +10,12 @@ const MyApp = ({ children }) => {
   return (
     <>
       <ToastContainer></ToastContainer>
-      <main className={mode ? "dark" : undefined}>
+      <main className={mode ? "dark relative" : 'ralative'}>
         <div className="light_bg dark:bg-black dark:text-white/90 min-h-screen relative ">
           <Navbar />
           <div className="w-[90%] sm:w-4/5 mx-auto">{children}</div>
 
-          <footer className="bg-white dark:bg-gray-900 ">
+          <footer className="bg-white dark:bg-gray-900 relative z-30">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
               <div className="md:flex md:justify-between gap-5">
                 <div className="mb-6 md:mb-0">
@@ -37,7 +36,7 @@ const MyApp = ({ children }) => {
                   </ul>
                 </div>
                 <div className="grid grid-cols-2   gap-8 sm:gap-12 md:grid-cols-3 lg:grid-cols-4">
-                  <div>
+                  {/* <div>
                     <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                       HourOfOperation
                     </h2>
@@ -85,7 +84,7 @@ const MyApp = ({ children }) => {
                         <span>10:00 AM - 9:00 PM</span>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                   <div>
                     <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                       Services

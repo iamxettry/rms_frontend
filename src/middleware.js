@@ -16,11 +16,11 @@ export function middleware(request) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  if (superuser && url.includes("/dashboard/user")) {
+  if (superuser && url.includes("/dashboard/user/")) {
     return NextResponse.redirect(new URL("/", request.url));
   }
  
-  if (user && url.includes("/dashboard/admin")) {
+  if (!superuser && url.includes("/dashboard/admin/")) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 }

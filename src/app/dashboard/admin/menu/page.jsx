@@ -27,7 +27,7 @@ const AdminMenu = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [data]);
   const handleDelete = async (id) => {
     try {
       const res = await fetch(
@@ -74,23 +74,24 @@ const AdminMenu = () => {
             <div className="relative  shadow-md sm:rounded-lg z-10 w-[96%] md:w-[90%] lg:w-4/5 mx-auto mt-4">
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                  <tr>
+                  <tr >
                     <th
                       scope="col"
                       className="px-4 hidden md:flex md:px-2 py-3"
                     >
                       Product name
                     </th>
-                    <th scope="col" className="px-4 md:hidden md:px-2 py-3">
+                    <th  className="px-4 md:hidden md:px-2 py-3">
                       Name
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3   items-center"
+                      className="px-4 py-3    "
                     >
-                      Category
+                     category
                     </th>
+                   
                     <th scope="col" className="px-4 py-3 ">
                       Price
                     </th>
@@ -100,7 +101,7 @@ const AdminMenu = () => {
                     <th scope="col" className="px-4 py-3 hidden ">
                       Available
                     </th>
-                    <th scope="col" className="px-4 py-3 hidden md:flex">
+                    <th scope="col" className="px-4 py-3 hidden ">
                       Calorie
                     </th>
                     <th scope="col" className="px-4 py-3">
@@ -119,7 +120,7 @@ const AdminMenu = () => {
                     >
                       <th
                         scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        className="pl-2 py-2  md:px-6 md:py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
                         <Link
                           href={`/dashboard/admin/menu/details/${item.id}`}
@@ -128,20 +129,18 @@ const AdminMenu = () => {
                           {item.name}
                         </Link>
                       </th>
-                      <td className="px-4 py-4 hidden md:flex">
+                      <td className="px-2  md:px-4 py-2  md:py-4">
                         {item.category}
                       </td>
-                      <td className="px-4 py-4 ">{item.price}</td>
-                      <td className="px-4 py-4  hidden ">
-                        {item.itemtype === true ? "Yes" : "No"}
-                      </td>
-                      <td className="px-4 py-4  hidden ">
+                      <td className="px-2  md:px-4 py-2  md:py-4 ">{item.price}</td>
+                     
+                      <td className="px-2  md:px-4 py-2  md:py-4  hidden ">
                         {item.available === true ? "yes" : "No"}
                       </td>
-                      <td className="px-4 py-4 hidden md:flex ">
+                      {/* <td className="px-2  md:px-4 px-2  md:py-4 hidden md:flex ">
                         {item.calorie}
-                      </td>
-                      <td className="px-4 py-4 text-right">
+                      </td> */}
+                      <td className="px-2  md:px-4 py-2  md:py-4 text-right">
                         <Link
                           href={`/dashboard/admin/menu/edit-item/${item.id}`}
                           className="font-medium text-blue-600 dark:text-blue-500 hover:underline"

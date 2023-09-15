@@ -1,36 +1,50 @@
 'use client'
+import getNotCompletedOrder from "@/lib/getNotcompletedOrder";
 import getOrderList from "@/lib/getOrderList";
 import Cookies from "js-cookie";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { ImArrowLeft2 } from "react-icons/im";
 
 const Order = () => {
   
   const [order, setOrder] = useState([]);
+  const userId = Cookies.get('userId');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = Cookies.get('userId');
-        const orderData = await getOrderList();
-        // console.log('all data',orderData);
-        const filteredData = orderData.result.filter(item => item.account.id === parseInt(userId));
-        // console.log('filtered data',filteredData);
-        setOrder(filteredData);
+        const orderData = await getNotCompletedOrder(parseInt(userId));
+        setOrder(orderData.result);
       } catch (error) {
         console.error("Error fetching order data:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [userId]);
+
+ 
 
   return (
     <>
     <div className="lg:w-4/5 mx-auto">
 
-      <div className="w-full flex justify-start items-center py-5">
-        <h1 className="ml-4 text-4xl ">My Orders</h1>
-      </div>
+    <header className="flex justify-between items-center text-gray-700 dark:text-white">
+          <Link
+            href={"/dashboard/user/"}
+            className="flex gap-2 items-center py-2 my-2 cursor-pointer"
+          >
+            <ImArrowLeft2 />
+            <h1 className="font-bold ">Back</h1>
+          </Link>
+          <Link
+            href={`/dashboard/user/myorder/history`}
+            className="flex gap-2 items-center py-2 my-2 cursor-pointer mr-4 md:mr-10"
+          >
+            <h1 className="font-bold ">View History</h1>
+          </Link>
+        </header>
       <div>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">

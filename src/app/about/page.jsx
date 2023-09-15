@@ -25,7 +25,7 @@ const About = () => {
           />
           <DashLineRight />
         </div>
-        <div className="mt-32">
+        <div className="mt-52">
           <h1 className="uppercase md:text-6xl text-2xl">Let&apos;s conntect with us</h1>
           <form action="" className="md:w-4/5 mx-auto  flex gap-5 items-center my-5">
             <div className="">

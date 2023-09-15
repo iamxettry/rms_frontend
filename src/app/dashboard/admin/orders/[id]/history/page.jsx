@@ -1,5 +1,6 @@
 'use client'
 
+import Cookies from "js-cookie"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { ImArrowLeft2, ImCheckmark, ImCross } from "react-icons/im"
@@ -8,6 +9,8 @@ import { toast } from "react-toastify"
 const History = ({params}) => {
     const [data, setdata] = useState([])
     const {id}=params
+  const user = Cookies.get("user");
+
     useEffect(()=>{
         const fetchData = async ()=>{
 
@@ -36,11 +39,12 @@ const History = ({params}) => {
     },[id])
   return (
     <main>
-        <div>
+        <div className="flex justify-between items-center text-gray-700 dark:text-white">
         <Link href={`/dashboard/admin/orders/${id}`} className="flex gap-2 items-center py-2 my-2 cursor-pointer">
             <ImArrowLeft2 />
             <h1 className="font-bold ">Back</h1>
         </Link>
+            <h2 className="font-bold py-2  mr-4 md:mr-10">  Order History</h2>
         </div>
          <div className="relative  shadow-md sm:rounded-lg z-10 w-[96%] md:w-[90%] lg:w-4/5 mx-auto mt-4">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

@@ -13,7 +13,7 @@ const MenuList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getVegNonVeg(0);
+      const data = await getVegNonVeg('nonveg');
 
       setMenuData(data.result);
     };

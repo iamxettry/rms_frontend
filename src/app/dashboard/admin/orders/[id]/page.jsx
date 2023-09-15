@@ -15,18 +15,12 @@ const OrderDetails = ({ params }) => {
   const [date, setDate] = useState([]);
   const [time, setTime] = useState([]);
   const user = Cookies.get("user");
-  console.log(user);
 
   const { id } = params;
   const router = useRouter();
   console.log(order);
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-      } catch (error) {}
-    };
-  });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -174,7 +168,7 @@ const OrderDetails = ({ params }) => {
                     const { name } = item.menu_item;
                     return (
                       <tr key={id}>
-                        <td className="px-4 py-3 text-center ">{name}</td>
+                        <td className="px-4 py-3 text-center capitalize">{name}</td>
                         <td className="px-4 py-3 text-center ">{quantity}</td>
                         <td className="px-4 py-3  flex justify-center items-center ">
                           {completed ? (
@@ -201,8 +195,8 @@ const OrderDetails = ({ params }) => {
                   })}
                 </tbody>
               </table>
-              <div>
-                <button onClick={handleSetAllItemsTrue}>Checked All</button>
+              <div className="my-2 w-full  flex justify-end pr-4">
+                <button onClick={handleSetAllItemsTrue} className=" py-3 underline">Checked All</button>
               </div>
             </div>
           </>

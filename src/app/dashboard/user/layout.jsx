@@ -4,9 +4,10 @@ export default function DashboardLayout({
     children, 
   }) {
     return (
-      <section className='absolute left-0  flex w-full gap-1'>
+      <div className="relative min-h-screen w-screen -left-[15%] ">
+        <section className='absolute left-3  flex w-full gap-1'>
         
-        <div>
+        <div className="pl-4 md:p-0">
         <Sidebar/>
         </div>
         <div className='flex-1 min-h-screen'>
@@ -15,5 +16,6 @@ export default function DashboardLayout({
         </div>
    
       </section>
+      </div>
     )
   }
