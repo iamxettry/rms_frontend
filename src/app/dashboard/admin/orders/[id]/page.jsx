@@ -18,7 +18,6 @@ const OrderDetails = ({ params }) => {
 
   const { id } = params;
   const router = useRouter();
-  console.log(order);
 
 
   useEffect(() => {

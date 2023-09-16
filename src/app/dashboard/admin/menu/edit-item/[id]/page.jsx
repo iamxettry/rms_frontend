@@ -21,7 +21,6 @@ const EditItem = ({ params }) => {
     available: "",
     calorie: "",
   });
-  console.log(data);
   useEffect(() => {
     // Fetch data using a GET request with the provided itemId
     const fetchData = async () => {

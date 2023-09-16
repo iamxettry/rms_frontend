@@ -6,29 +6,44 @@ import Link from "next/link";
 import BackLight from "../backLight/Backlight";
 import { useEffect, useState } from "react";
 import getCategoryList from "@/lib/getCategory";
+import { selectSearchValue } from "@/redux/features/filterSearchSlice";
+import { useSelector } from "react-redux";
 const MenuList = () => {
   // const [favourite, setfavourite] = useState(false);
   const [category, setCategory] = useState([]);
+  const searchTerm=useSelector(selectSearchValue)
   useEffect(() => {
     const fetchData = async () => {
       const data = await getCategoryList();
+      if (searchTerm) {
+        // Filter the data based on the search term
+        const filteredData = data.result.map((categoryItem) => ({
+          ...categoryItem,
+          data: categoryItem.data.filter((item) =>
+            item.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+          ),
+        }));
 
-      setCategory(data.result);
+        setCategory(filteredData);
+      } else {
+        // If no search term, set the data as it is
+        setCategory(data.result);
+      };
     };
     fetchData();
-  }, [setCategory]);
+  }, [setCategory,searchTerm]);
 
   return (
     <>
       <div className="relative z-10 text-black dark:text-white text-opacity-70">
         {/* menu nav category */}
         <div className="my-3">
-          <div className="flex bg-white rounded-md px-4 py-3 justify-start items-center gap-5 dark:bg-slate-800 dark: dark:bg-opacity-50 dark:drop-shadow-md ">
+          <div className="flex bg-white rounded-md px-4 py-3 justify-start items-center gap-5 dark:bg-slate-800 dark: dark:bg-opacity-50 dark:drop-shadow-md flex-wrap">
             {category.map((item) => (
               <li key={item.category} className="list-none">
                 <a
                   href={`#${item.category}`}
-                  className="transition-all ease-in capitalize font-bold hover:text-orange-500"
+                  className="transition-all text-2xl ease-in capitalize font-bold hover:text-orange-500"
                 >
                   {item.category}
                 </a>
@@ -88,7 +103,7 @@ const MenuList = () => {
                       height={300}
                       width={300}
                       className=" rounded-lg  "
-                      alt="salad"
+                      alt={item.name}
                     />
                     <h1 className="capitalize text-start w-full text-black text-opacity-80  text-lg my-2 dark:text-white">
                       <b>{item.name}</b>

@@ -1,15 +1,12 @@
 "use client";
 import getOrderList from "@/lib/getOrderList";
-import { setUser } from "@/redux/features/authSlice";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { ImCheckmark, ImCross } from "react-icons/im";
-import { useDispatch } from "react-redux";
 
 const Orders =  () => {
   const [order, setOrder] = useState(null);
-  const dispatch= useDispatch()
   useEffect(() => {
     const fetchData = async () => {
       try {

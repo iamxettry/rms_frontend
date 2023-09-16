@@ -1,8 +1,6 @@
 "use client";
 import CreateMenu from "@/components/admin-menu/CreateMenu";
-import getMenu from "@/lib/getMenu";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";

@@ -1,4 +1,5 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { FaStar, FaRegClock } from "react-icons/fa";
@@ -11,19 +12,20 @@ import IncDec from "@/components/menu/IncDec";
 import BackLight from "@/components/backLight/Backlight";
 import getItem from "@/lib/getItem";
 import CartItem from "./CartItem";
+import MenuItem from "@/components/menu/MenuItem";
 
 
-const page =async ({ params }) => {
+const page = async ({ params }) => {
   const {slug}=params
   const data=await getItem(slug)
- 
+
   return (
     <>
     <div className="h-[80vh] md:hidden">
 
     </div>
       <div className="absolute z-40 top-0 left-0 light_bg   py-8 dark:bg-black  lg:flex md:relative lg:gap-5">
-        <div className="relative flex flex-col items-center justify-normal gap-5 lg:flex-1 ">
+        <div className="relative flex flex-col items-center justify-normal gap-5 lg:flex-[0.8] xl:flex-[0.5] ">
           <BackLight style=" h-40 w-40 top-14 left-5 blur-[100px] bg-gradient-to-r from-green-500 to-white z-0" />
           <BackLight style="h-20 w-20 md:h-24 md:w-24 top-96 right-16 bg-gradient-to-l from-green-500 to-white z-0 blur-[30px] md:blur-[50px] md:top-10 md:blur-[60px] " />
           <BackLight style="h-20 w-20 bottom-4 left-20 bg-gradient-to-r from-green-500 to-white blur-[40px] md:left-40 " />
@@ -40,9 +42,9 @@ const page =async ({ params }) => {
                 src={data.img}
                 priority
                 height={300}
-                width={400}
-                className="z-20 relative   w-[250px] h-[250px] xs:h-auto  xs:w-[350px] md:w-[200px] lg:w-[250px] rounded-md"
-                alt="salad"
+                width={300}
+                className="z-20 relative w-[150px] h-[150px]    xs:h-auto  xs:w-[300px] md:w-[200px] lg:w-[230px] rounded-md"
+                alt={data.name}
               />
 
               {/* Increment Decrement */}
@@ -110,13 +112,8 @@ const page =async ({ params }) => {
           </div>
           <div className="hidden">Add later</div>
         </div>
-        <div className="hidden lg:flex flex-[0.3] xl:flex-[0.5] lg:w-60">
-          <div className="flex flex-col flex-wrap items-center justify-center xl:grid xl:grid-cols-2 border-l border-black/70 dark:border-white ">
-            {/* <MenuItem title="Seafood Salad" />
-            <MenuItem title="Momo" />
-            <MenuItem title="Avocada salad" />
-            <MenuItem title="Fish " /> */}
-          </div>
+        <div className="hidden lg:flex  lg:flex-[0.2] xl:flex-[0.5]">
+            <MenuItem/>
         </div>
       </div>
     </>
