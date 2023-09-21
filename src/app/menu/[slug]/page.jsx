@@ -36,14 +36,14 @@ const page = async ({ params }) => {
             </Link>
             <BiDotsVerticalRounded className="absolute right-0 text-3xl top-1 md:hidden z-20" />
             {/* left section  */}
-            <div className=" flex flex-col items-center  relative z-10 top-5">
+            <div className=" flex flex-col items-center  relative z-10">
               {/* Image section */}
               <Image
                 src={data.img}
                 priority
                 height={300}
                 width={300}
-                className="z-20 relative w-[150px] h-[150px]    xs:h-auto  xs:w-[300px] md:w-[200px] lg:w-[230px] rounded-md"
+                className="z-20 relative w-[200px] h-[200px]    xs:h-auto  xs:w-[300px] md:w-[200px] lg:w-[230px] rounded-md"
                 alt={data.name}
               />
 
