@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-// import React, { useState } from "react";
 import { FaPlus, FaHeart } from "react-icons/fa";
 import Link from "next/link";
 import BackLight from "../backLight/Backlight";
@@ -39,7 +38,7 @@ const MenuList = () => {
         {/* menu nav category */}
         <div className="my-3">
           <div className="flex bg-white rounded-md px-4 py-3 justify-start items-center gap-5 dark:bg-slate-800 dark: dark:bg-opacity-50 dark:drop-shadow-md flex-wrap">
-            {category.map((item) => (
+            {category?.map((item) => (
               <li key={item.category} className="list-none">
                 <a
                   href={`#${item.category}`}
@@ -65,7 +64,7 @@ const MenuList = () => {
         </div>
         {/* menu list */}
 
-        {category.map((items) => (
+        {category?.map((items) => (
           <div className="my-3" id={items.category} key={`#${items.category}`}>
             <div className="px-4 w-full py-1 bg-white dark:bg-slate-800 dark:bg-opacity-50 rounded-md">
               <h1 className="font-bold capitalize text-2xl">{items.category}</h1>
