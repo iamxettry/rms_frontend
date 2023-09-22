@@ -5,32 +5,33 @@ import Link from "next/link";
 import BackLight from "../backLight/Backlight";
 import { useEffect, useState } from "react";
 import getCategoryList from "@/lib/getCategory";
-import { selectSearchValue } from "@/redux/features/filterSearchSlice";
-import { useSelector } from "react-redux";
+// import { selectSearchValue } from "@/redux/features/filterSearchSlice";
+// import { useSelector } from "react-redux";
 const MenuList = () => {
   // const [favourite, setfavourite] = useState(false);
   const [category, setCategory] = useState([]);
-  const searchTerm=useSelector(selectSearchValue)
+  // const searchTerm=useSelector(selectSearchValue)
   useEffect(() => {
     const fetchData = async () => {
       const data = await getCategoryList();
-      if (searchTerm) {
-        // Filter the data based on the search term
-        const filteredData = data.result.map((categoryItem) => ({
-          ...categoryItem,
-          data: categoryItem.data.filter((item) =>
-            item.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-          ),
-        }));
+      // if (searchTerm) {
+      //   // Filter the data based on the search term
+      //   const filteredData = data.result.map((categoryItem) => ({
+      //     ...categoryItem,
+      //     data: categoryItem.data.filter((item) =>
+      //       item.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+      //     ),
+      //   }));
 
-        setCategory(filteredData);
-      } else {
-        // If no search term, set the data as it is
-        setCategory(data.result);
-      };
+      //   setCategory(filteredData);
+      // } else {
+      //   // If no search term, set the data as it is
+      //   setCategory(data.result);
+      // };
+      setCategory(data.result);
     };
     fetchData();
-  }, [setCategory,searchTerm]);
+  }, []);
 
   return (
     <>
