@@ -9,16 +9,11 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 const CartItem = ({ slug }) => {
-  // const count = Cookies.get("count");
   let count= useSelector(selectCount)
-  // const { slug } = params;
   const userId = Cookies.get("userId");
-
   const router= useRouter()
-  const handleClick = async (e) => {
-    e.preventDefault();
+  const handleClick = async () => {
     let verify=Cookies.get('loggedin')
-    console.log(verify);
     if (!verify) {
       router.push('/auth/login')
     }
@@ -31,8 +26,7 @@ const CartItem = ({ slug }) => {
         body: JSON.stringify({quantity:count,u_id:userId,f_id:slug}),
       });
        if (res.ok) {
-        const data=await res.json()
-        console.log("successful",data);
+        toast.success("Order added to cart")
        }else{
         toast.error('not logged in')
        }

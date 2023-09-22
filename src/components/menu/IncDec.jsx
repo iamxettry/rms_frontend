@@ -1,10 +1,9 @@
 'use client'
 
-import { selectCount, setProductCount } from "@/redux/features/orderSlice"
-import Cookies from "js-cookie"
+import { setProductCount } from "@/redux/features/orderSlice"
 import { useEffect, useState } from "react"
 import { FaMinus, FaPlus } from "react-icons/fa"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 const IncDec = ({data}) => {
     const [count, setCount] = useState(1)

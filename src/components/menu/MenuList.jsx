@@ -5,40 +5,41 @@ import Link from "next/link";
 import BackLight from "../backLight/Backlight";
 import { useEffect, useState } from "react";
 import getCategoryList from "@/lib/getCategory";
-// import { selectSearchValue } from "@/redux/features/filterSearchSlice";
-// import { useSelector } from "react-redux";
+import { selectSearchValue } from "@/redux/features/filterSearchSlice";
+import { useSelector } from "react-redux";
 const MenuList = () => {
   // const [favourite, setfavourite] = useState(false);
   const [category, setCategory] = useState([]);
-  // const searchTerm=useSelector(selectSearchValue)
+  const searchTerm=useSelector(selectSearchValue)
   useEffect(() => {
     const fetchData = async () => {
       const data = await getCategoryList();
-      // if (searchTerm) {
-      //   // Filter the data based on the search term
-      //   const filteredData = data.result.map((categoryItem) => ({
-      //     ...categoryItem,
-      //     data: categoryItem.data.filter((item) =>
-      //       item.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-      //     ),
-      //   }));
+      if (searchTerm) {
+        // Filter the data based on the search term
+        const filteredData = data.result.map((categoryItem) => ({
+          ...categoryItem,
+          data: categoryItem.data.filter((item) =>
+            item.name.toLowerCase().includes(searchTerm.toLowerCase())
+          ),
+        }));
 
-      //   setCategory(filteredData);
-      // } else {
-      //   // If no search term, set the data as it is
-      //   setCategory(data.result);
-      // };
-      setCategory(data.result);
+        setCategory(filteredData);
+      } else {
+        // If no search term, set the data as it is
+        setCategory(data.result);
+      };
     };
     fetchData();
-  }, []);
+  }, [searchTerm]);
 
   return (
     <>
       <div className="relative z-10 text-black dark:text-white text-opacity-70">
         {/* menu nav category */}
         <div className="my-3">
-          <div className="flex bg-white rounded-md px-4 py-3 justify-start items-center gap-5 dark:bg-slate-800 dark: dark:bg-opacity-50 dark:drop-shadow-md flex-wrap">
+          {
+            searchTerm?'':<>
+            <div className="flex bg-white rounded-md px-4 py-3 justify-start items-center gap-5 dark:bg-slate-800 dark: dark:bg-opacity-50 dark:drop-shadow-md flex-wrap">
             {category?.map((item) => (
               <li key={item.category} className="list-none">
                 <a
@@ -62,13 +63,16 @@ const MenuList = () => {
               View All Menu
             </Link>
           </div>
+            </>
+          }
+          
         </div>
         {/* menu list */}
 
         {category?.map((items) => (
           <div className="my-3" id={items.category} key={`#${items.category}`}>
             <div className="px-4 w-full py-1 bg-white dark:bg-slate-800 dark:bg-opacity-50 rounded-md">
-              <h1 className="font-bold capitalize text-2xl">{items.category}</h1>
+              {searchTerm?"":<h1 className="font-bold capitalize text-2xl">{items.category}</h1>}
             </div>
             <div className="grid grid-cols-2 rounded-lg md:grid-cols-3 lg:grid-cols-4">
               {/* map the items */}
@@ -92,7 +96,7 @@ const MenuList = () => {
                )
              } */}
                   <Link
-                    href={`/menu/${item.id}`}
+                    href={`/menu/${item.id}#add-to-cart`}
                     className="w-full flex flex-col justify-around items-center "
                   >
                     {/* <BackLight style=" h-20 w-20 top-12 left-10 blur-[50px]  bg-gradient-to-r from-green-500 to-white" /> */}

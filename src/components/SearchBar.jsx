@@ -1,7 +1,5 @@
 'use client'
 import { setSearchTerm } from '@/redux/features/filterSearchSlice'
-import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
 
 import {FaSearch} from 'react-icons/fa'
 import {HiAdjustments} from 'react-icons/hi'

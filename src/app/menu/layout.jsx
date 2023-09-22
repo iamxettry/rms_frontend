@@ -2,14 +2,13 @@ import SearchBar from "@/components/SearchBar";
 import BackLight from "@/components/backLight/Backlight";
 import DashLineCenter from "@/components/dashedlined/DashLineCenter";
 import DashLineRight from "@/components/dashedlined/DashLineRight";
-import Sidebar from "@/components/sidebar/Sidebar";
 
 export default function MenuLahout({ children }) {
   return (
     <main className=" ">
       <div className="z-10 py-10 relative after:absolute after:z-0  after:contents-[*]  md:after:w-[600px] after:h-96 md:after:bg-hero-11 after:bg-contain after:bg-no-repeat md:after:blur-sm md:after:opacity-50 lg:after:blur-none after:top-0 after:right-0 ">
         <div className="flex  justify-center items-center flex-col h-48 gap-10 z-40 relative ">
-          <h1 className="text-4xl md:text-6xl font-bold">Main Menu</h1>
+          <h1 className="text-4xl md:text-6xl font-bold text-black dark:text-white text-opacity-80">Main Menu</h1>
           <p className="text-lg text-black/60 dark:text-white/70">
             Experience the Magic of Bubbles at BubbleDubble.
           </p>
@@ -25,7 +24,7 @@ export default function MenuLahout({ children }) {
       </div>
 
       {/* search component */}
-      <div className="mt-10 relative z-10">
+      <div  id="add-to-cart" className="mt-10 relative z-10">
         <SearchBar />
       </div>
 
