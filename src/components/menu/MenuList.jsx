@@ -34,7 +34,7 @@ const MenuList = () => {
 
   return (
     <>
-      <div className="relative z-10 text-black dark:text-white text-opacity-70">
+      <div className="relative z-10 text-black dark:text-white text-opacity-70 ">
         {/* menu nav category */}
         <div className="my-3">
           {
@@ -44,9 +44,9 @@ const MenuList = () => {
               <li key={item.category} className="list-none">
                 <a
                   href={`#${item.category}`}
-                  className="transition-all text-2xl ease-in capitalize font-bold hover:text-orange-500"
+                  className=" ease-linear transition-transform text-2xl capitalize font-bold hover:text-orange-500"
                 >
-                  {item.category}
+                  {item.category} <span className="text-sm text-orange-500">|</span>
                 </a>
               </li>
             ))}

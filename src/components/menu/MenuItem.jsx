@@ -3,14 +3,14 @@ import { FaPlus, FaHeart } from "react-icons/fa";
 import BackLight from "../backLight/Backlight";
 import getMenu from "@/lib/getMenu";
 import Link from "next/link";
-const MenuItem =async () => {
-  const item = await getMenu(4);
+const MenuItem =async ({category}) => {
+  const item = await getMenu(4,category);
   return (
     <>
       <div className="flex  items-center justify-center lg:flex-row bg-slate-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white   flex-wrap w-full">
       {item?.map((item) => (
                 <div
-                  className="flex flex-col items-center  bg-white border-gray-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white/70  shadow-lg dark:shadow-sm shadow-slate-500 dark:shadow-yellow-50  border dark:border-gray-600 dark:hover:border-orange-500  hover:border-orange-500 lg:flex-wrap lg:flex-row  lg:w-40 xl:w-36"
+                  className="flex flex-col items-center  bg-white border-gray-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white/70  shadow-lg dark:shadow-sm shadow-slate-500 dark:shadow-yellow-50  border dark:border-gray-600 dark:hover:border-orange-500  hover:border-orange-500 lg:flex-wrap lg:flex-row  lg:w-40 xl:w-40"
                   key={item.id}
                 >
            
@@ -28,12 +28,12 @@ const MenuItem =async () => {
                       className=" rounded-lg  "
                       alt={item.name}
                     />
-                    <h1 className="capitalize text-start w-full text-black text-opacity-80  text-lg my-2 dark:text-white lg:text-sm lg:text-bold xl:">
+                    <h1 className="capitalize text-start w-full text-black text-opacity-80  text-lg my-2 dark:text-white lg:text-sm lg:font-bold ">
                       <b>{item.name}</b>
                     </h1>
                     <div className="flex justify-between items-center w-full">
-                      <p className="text-black text-opacity-80 dark:text-white text-sm xs:text-base">
-                        <b>Rs {item.price}</b>
+                      <p className="text-black text-opacity-80 dark:text-white text-sm xs:text-base lg:text-sm lg:font-bold">
+                        <b >Rs {item.price}</b>
                       </p>
 
                       <p className="p-1 xs:p-2 rounded-full  text-white bg-orange-500 ">

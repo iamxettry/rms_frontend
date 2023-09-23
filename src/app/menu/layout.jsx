@@ -24,7 +24,7 @@ export default function MenuLahout({ children }) {
       </div>
 
       {/* search component */}
-      <div  id="add-to-cart" className="mt-10 relative z-10">
+      <div id="add-to-cart" className="mt-10 relative z-10">
         <SearchBar />
       </div>
 

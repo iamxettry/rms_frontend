@@ -29,8 +29,8 @@ export const CardInfo = [
       d3: "week in advance.",
     },
     btn: "Order Now",
-    path:'/order',
-    available:false
+    path:'/menu',
+    available:true
 
   },
 

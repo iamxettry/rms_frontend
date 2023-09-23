@@ -61,7 +61,7 @@ export const data = [{
         icon: HiHeart,
 
         hover: "Saved",
-        path:"/dashboard/saved"
+        path:"/dashboard/user/saved"
 
     },
     {
@@ -70,7 +70,7 @@ export const data = [{
         icon: HiCog6Tooth,
 
         hover: "Setting",
-        path:"/dashboard/setting"
+        path:"/dashboard/user/setting"
 
     },
 

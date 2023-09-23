@@ -7,6 +7,9 @@
 *{
     /* outline: 1px dashed rgb(24, 25, 25); */
 }
+html {
+    scroll-behavior: smooth;
+  }
 #bubble{
     transform: translateX(0);
     animation: float 6s ease-out infinite;

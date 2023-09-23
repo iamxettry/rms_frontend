@@ -1,24 +1,13 @@
-"use client";
 
 import Image from "next/image";
-// import React, { useState } from "react";
 import { FaPlus, FaHeart } from "react-icons/fa";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { ImArrowLeft2 } from "react-icons/im";
 import getVegNonVeg from "@/lib/getVegNonVeg";
-const MenuList = () => {
-  // const [favourite, setfavourite] = useState(false);
-  const [menuData, setMenuData] = useState([]);
+const MenuList = async () => {
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getVegNonVeg('nonveg');
 
-      setMenuData(data.result);
-    };
-    fetchData();
-  }, []);
+  const data = await getVegNonVeg('nonveg');
 
   return (
     <>
@@ -46,7 +35,7 @@ const MenuList = () => {
         </div>
         <div className="grid grid-cols-2 rounded-lg md:grid-cols-3 lg:grid-cols-4">
           {/* map the items */}
-          {menuData?.map((item) => (
+          {data?.result?.map((item) => (
             <div
               className="flex flex-col items-center  bg-white m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white shadow-lg dark:shadow-sm shadow-slate-500 dark:shadow-yellow-50   "
               key={item.id}
@@ -66,7 +55,7 @@ const MenuList = () => {
                 )
               } */}
               <Link
-                href={`/menu/${item.id}`}
+                href={`/menu/${item.id}#add-to-cart`}
                 className="w-full flex flex-col items-center"
               >
                 {/* <BackLight style=" h-20 w-20 top-12 left-10 blur-[50px]  bg-gradient-to-r from-green-500 to-white" /> */}

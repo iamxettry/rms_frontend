@@ -68,12 +68,12 @@ export const data = [{
 
 export const data1=[
     {
-        id: "noticications",
+        id: "notifications",
         title: "Notificatios",
         icon: MdNotifications,
 
         hover: "Notifications",
-        path:"/dashboard/admin/noticications"
+        path:"/dashboard/admin/notifications"
 
     },
 

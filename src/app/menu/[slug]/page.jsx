@@ -11,6 +11,7 @@ import BackLight from "@/components/backLight/Backlight";
 import getItem from "@/lib/getItem";
 import CartItem from "./CartItem";
 import MenuItem from "@/components/menu/MenuItem";
+import ViewImage from "@/components/ViewImage";
 
 const page = async ({ params }) => {
   const { slug } = params;
@@ -33,14 +34,8 @@ const page = async ({ params }) => {
             {/* left section  */}
             <div className=" flex flex-col items-center  relative z-10">
               {/* Image section */}
-              <Image
-                src={data.img}
-                priority
-                height={300}
-                width={300}
-                className="z-20 relative w-[200px] h-[200px]    xs:h-auto  xs:w-[300px] md:w-[200px] lg:w-[230px] rounded-md"
-                alt={data.name}
-              />
+              <ViewImage link={data.img}  name={data.name} />
+           
 
               {/* Increment Decrement */}
               <div className="flex flex-col items-center gap-3 z-20 relative mt-2 ">
@@ -108,7 +103,7 @@ const page = async ({ params }) => {
           <div className="hidden">Add later</div>
         </div>
         <div className="hidden lg:flex  lg:flex-[0.2] xl:flex-[0.4]">
-          <MenuItem />
+          <MenuItem category={data.category} />
         </div>
       </div>
     </>
