@@ -36,7 +36,7 @@ const MenuList = async () => {
         </div>
         <div className="grid grid-cols-2 rounded-lg md:grid-cols-3 lg:grid-cols-4">
           {/* map the items */}
-          {data?.map((item) => (
+          {data?.restult?.map((item) => (
             <div
               className="flex flex-col items-center  bg-white m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white shadow-lg dark:shadow-sm shadow-slate-500 dark:shadow-yellow-50   "
               key={item.id}
