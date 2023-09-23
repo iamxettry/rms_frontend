@@ -4,13 +4,13 @@ import BackLight from "../backLight/Backlight";
 import getMenu from "@/lib/getMenu";
 import Link from "next/link";
 const MenuItem =async () => {
-  const item = await getMenu(5);
+  const item = await getMenu(4);
   return (
     <>
       <div className="flex  items-center justify-center lg:flex-row bg-slate-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white   flex-wrap w-full">
       {item?.map((item) => (
                 <div
-                  className="flex flex-col items-center  bg-white border-gray-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white/70  shadow-lg dark:shadow-sm shadow-slate-500 dark:shadow-yellow-50  border dark:border-gray-600 dark:hover:border-orange-500  hover:border-orange-500 lg:flex-wrap lg:flex-row  lg:w-48"
+                  className="flex flex-col items-center  bg-white border-gray-200 m-2 px-4 py-4 gap-2 rounded-lg relative dark:bg-slate-200 dark:bg-opacity-10  dark:text-white/70  shadow-lg dark:shadow-sm shadow-slate-500 dark:shadow-yellow-50  border dark:border-gray-600 dark:hover:border-orange-500  hover:border-orange-500 lg:flex-wrap lg:flex-row  lg:w-40 xl:w-36"
                   key={item.id}
                 >
            
@@ -28,7 +28,7 @@ const MenuItem =async () => {
                       className=" rounded-lg  "
                       alt={item.name}
                     />
-                    <h1 className="capitalize text-start w-full text-black text-opacity-80  text-lg my-2 dark:text-white">
+                    <h1 className="capitalize text-start w-full text-black text-opacity-80  text-lg my-2 dark:text-white lg:text-sm lg:text-bold xl:">
                       <b>{item.name}</b>
                     </h1>
                     <div className="flex justify-between items-center w-full">

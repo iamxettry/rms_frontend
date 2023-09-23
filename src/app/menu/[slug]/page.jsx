@@ -12,18 +12,15 @@ import getItem from "@/lib/getItem";
 import CartItem from "./CartItem";
 import MenuItem from "@/components/menu/MenuItem";
 
-
 const page = async ({ params }) => {
-  const {slug}=params
-  const data=await getItem(slug)
+  const { slug } = params;
+  const data = await getItem(slug);
 
   return (
     <>
-    <div className="h-[80vh] md:hidden">
-
-    </div>
+      <div className="h-[80vh] md:hidden"></div>
       <div className="absolute z-40 top-0 left-0 light_bg   py-8 dark:bg-black  lg:flex md:relative lg:gap-5">
-        <div className="relative flex flex-col items-center justify-normal gap-5 lg:flex-[0.8] xl:flex-[0.5] ">
+        <div className="relative flex flex-col items-center justify-normal gap-5 lg:flex-[0.8] xl:flex-[0.6] ">
           <BackLight style=" h-40 w-40 top-14 left-5 blur-[100px] bg-gradient-to-r from-green-500 to-white z-0" />
           <BackLight style="h-20 w-20 md:h-24 md:w-24 top-96 right-16 bg-gradient-to-l from-green-500 to-white z-0 blur-[30px] md:blur-[50px] md:top-10 md:blur-[60px] " />
           <BackLight style="h-20 w-20 bottom-4 left-20 bg-gradient-to-r from-green-500 to-white blur-[40px] md:left-40 " />
@@ -106,12 +103,12 @@ const page = async ({ params }) => {
                 Rs {data.price}
               </span>
             </h1> */}
-            <CartItem slug={slug}/>
+            <CartItem slug={slug} />
           </div>
           <div className="hidden">Add later</div>
         </div>
-        <div className="hidden lg:flex  lg:flex-[0.2] xl:flex-[0.5]">
-            <MenuItem/>
+        <div className="hidden lg:flex  lg:flex-[0.2] xl:flex-[0.4]">
+          <MenuItem />
         </div>
       </div>
     </>
